@@ -21,17 +21,25 @@
                     @endif
                 </div>
                 <div class="card-body">
-                    @if (!isset($barang->kode_produk))
+
+                    {{-- @if ($barang->kode_produk == "")
+                        SAT
+                    @else
+                        asdasd
+                    @endif --}}
+
+                    @if ($barang->kode_produk == "")
                         <form method="POST" action="{{ route('barang.store') }}" enctype="multipart/form-data">
                     @else
                         <form method="POST" action="{{ route('barang.update', $barang->kode_produk) }}" enctype="multipart/form-data">
                             @method('PUT')
                     @endif
+
                         @csrf
                         <div class="form-group">
                             <label for="kodeProduk">Kode Produk</label>
                             <input class="form-control" id="kodeProduk" name="kodeProduk" type="text"
-                                placeholder="Kode Produk" value="{{ old('barang', $barang->kode_produk) }}" {{ $barang->kode_produk ? "readonly='true'" : "readonly='false'" }}>
+                                placeholder="Kode Produk" value="{{ old('barang', $barang->kode_produk) }}" {{ $barang->kode_produk ? "readonly=true" : "" }}>
                         </div>
 
                         <div class="form-group">
@@ -67,8 +75,7 @@
 
                         <div class="form-group">
                             <label for="keteranganProduk">Keterangan Produk</label>
-                            <textarea class="form-control" name="keteranganProduk">{{ $barang->keterangan }}
-                            </textarea>
+                            <textarea class="form-control" name="keteranganProduk">{{ $barang->keterangan }}</textarea>
                         </div>
 
                         <a class="btn btn btn-info" href="{{ route('barang.index') }}">←</a>

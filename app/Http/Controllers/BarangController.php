@@ -30,9 +30,9 @@ class BarangController extends Controller
      */
     public function create()
     {
-        $barang = new Barang();
+        $barangs = new Barang();
 
-        $barang =  (object) $barang->getDefaultValues();
+        $barang =  (object) $barangs->getDefaultValues();
 
         return view('admin/barang.form',[
             'barang' => $barang
@@ -135,11 +135,11 @@ class BarangController extends Controller
             'keterangan' => $request->keteranganProduk
         ];
 
-        if($data['gambar_produk'] == null){
-            dd('gambarkosong');
-        }else{
-            dd('WKWKWKWKWK');
-        }
+        // if($data['gambar_produk'] == null){
+        //     dd('gambarkosong');
+        // }else{
+        //     dd('WKWKWKWKWK');
+        // }
 
         // $update = $barang->update($data);
 
