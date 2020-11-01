@@ -17,16 +17,18 @@
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
 //Homepage
 Route::get('/','WebsiteController@index');
 
-//Barang
-Route::resource('barang', 'BarangController');
+Route::group(['prefix' => 'admin'], function () {
+    //Barang
+    Route::resource('barang', 'BarangController');
 
-//Proyek
-Route::resource('proyek', 'ProyekController');
+    //Proyek
+    Route::resource('proyek', 'ProyekController');
 
-//Pelanggan
-Route::resource('pelanggan', 'PelangganController');
+    //Pelanggan
+    Route::resource('pelanggan', 'PelangganController');
+});

@@ -12,6 +12,12 @@ class BarangController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $barang = new Barang();
@@ -127,21 +133,50 @@ class BarangController extends Controller
     {
         $barang = new Barang();
 
-        $data = [
-            'nama_produk' => $request->namaProduk,
-            'harga' => $request->hargaProduk,
-            'satuan'=> $request->satuanProduk,
-            'gambar_produk' => $request->gambarProduk,
-            'keterangan' => $request->keteranganProduk
-        ];
 
-        // if($data['gambar_produk'] == null){
-        //     dd('gambarkosong');
-        // }else{
-        //     dd('WKWKWKWKWK');
-        // }
+        if($request->gambarProduk == null){
+            $dataWoPhoto = [
+                'nama_produk' => $request->namaProduk,
+                'harga' => $request->hargaProduk,
+                'satuan'=> $request->satuanProduk,
+                'keterangan' => $request->keteranganProduk
+            ];
 
-        // $update = $barang->update($data);
+            $updateBarang = $barang::where('kode_produk', $request->kodeProduk)
+                                    ->update($dataWoPhoto);
+
+            if($updateBarang){
+                return redirect('admin/barang')->with('success','Data Berhasil Diperbaharui');
+            }else{
+                return redirect('admin/barang/'.$request->kodeProduk.'/edit')->with('error','Data Gagal Diperbaharui');
+            }
+
+        }else{
+
+            $gambarProduk = $request->file('gambarProduk');
+
+            $gambarName = time().'_'.$request->namaProduk.'_'.'.'.$request->gambarProduk->extension();
+
+            $dataWPhoto = [
+                'nama_produk' => $request->namaProduk,
+                'harga' => $request->hargaProduk,
+                'satuan'=> $request->satuanProduk,
+                'gambar_produk' => $gambarName,
+                'keterangan' => $request->keteranganProduk
+            ];
+
+            $updateBarang = $barang::where('kode_produk', $request->kodeProduk)
+                                    ->update($dataWPhoto);
+
+            if($updateBarang){
+                $gambarProduk->move('images',$gambarName);
+
+                return redirect('admin/barang')->with('success','Data Berhasil Diperbaharui');
+            }else{
+                return redirect('admin/barang/'.$request->kodeProduk.'/edit')->with('error','Data Gagal Diperbaharui');
+            }
+
+        }
 
     }
 

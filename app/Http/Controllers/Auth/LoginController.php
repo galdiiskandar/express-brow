@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Session;
+use Illuminate\Support\Facades\Redirect;
 
 
 class LoginController extends Controller
@@ -47,28 +49,31 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-    $this->validate($request, [
-        'username' => 'required|string', //VALIDASI KOLOM USERNAME
-        //TAPI KOLOM INI BISA BERISI EMAIL ATAU USERNAME
-        'password' => 'required|string',
-    ]);
+      $this->validate($request, [
+          //username validation
+          'username' => 'required|string',
+          'password' => 'required|string',
+      ]);
 
-    //LAKUKAN PENGECEKAN, JIKA INPUTAN DARI USERNAME FORMATNYA ADALAH EMAIL, MAKA KITA AKAN MELAKUKAN PROSES AUTHENTICATION MENGGUNAKAN EMAIL, SELAIN ITU, AKAN MENGGUNAKAN USERNAME
-    $loginType = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email_user' : 'username';
+      //do validation, if input is username, it will use username, unless this will use email
 
-    //TAMPUNG INFORMASI LOGINNYA, DIMANA KOLOM TYPE PERTAMA BERSIFAT DINAMIS BERDASARKAN VALUE DARI PENGECEKAN DIATAS
-    $login = [
-        $loginType => $request->username,
-        'password' => $request->password
-    ];
+      $loginType = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email_user' : 'username';
 
-    //LAKUKAN LOGIN
-    if (auth()->attempt($login)) {
-        //JIKA BERHASIL, MAKA REDIRECT KE HALAMAN HOME
-        return redirect()->route('home');
+      $login = [
+          $loginType => $request->username,
+          'password' => $request->password
+      ];
 
-    }
-    //JIKA SALAH, MAKA KEMBALI KE LOGIN DAN TAMPILKAN NOTIFIKASI
-    return redirect()->route('login')->with(['error' => 'Email/Password salah!']);
+      // login validate
+      if (auth()->attempt($login)) {
+          //if success
+          return redirect()->route('barang.index');
+
+      }
+
+      //else, will show flash notification
+      return redirect()->route('login')->with(['error' => 'Email/Password salah!']);
+      }
+    
     }
 }
