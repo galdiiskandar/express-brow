@@ -36,7 +36,7 @@
                         </div>
                         <div class="form-group">
                             <label for="deskripsiProyek">Deskripsi Proyek</label>
-                            <textarea class="form-control" name="deskriipsiProyek"></textarea>
+                            <textarea class="form-control" name="deskripsiProyek"></textarea>
                         </div>
 
                         <div class="form-group">
@@ -47,9 +47,9 @@
 
                         <div class="form-group">
                             <label for="statusProyek">Status Proyek</label>
-                            <input class="form-control" id="statusProduk" name="statusProyek"
+                            <input class="form-control" id="statusProyek" name="statusProyek"
                                 placeholder="Masukan Nama Proyek">
-
+                        </div>
 
                         <button class="btn btn-secondary" type="reset">Ulang</button>
                         <button class="btn btn-success btn-submit" type="submit">Simpan</button>

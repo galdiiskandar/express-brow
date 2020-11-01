@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('alamat',50);
             $table->string('no_telp_user',50);
             $table->string('email_user')->unique();
-            $table->string('foto_user');
+            $table->string('foto_user')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
