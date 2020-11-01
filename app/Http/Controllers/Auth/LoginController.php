@@ -73,7 +73,7 @@ class LoginController extends Controller
 
       //else, will show flash notification
       return redirect()->route('login')->with(['error' => 'Email/Password salah!']);
-      }
-    
+
+
     }
 }

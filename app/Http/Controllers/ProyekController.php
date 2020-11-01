@@ -71,9 +71,9 @@ class ProyekController extends Controller
         if($insertData){
             $gambarProyek->move('images',$gambarName);
 
-            return redirect('proyek')->with('success','Data Berhasil Disimpan');
+            return redirect('admin/proyek')->with('success','Data Berhasil Disimpan');
         }else{
-            return redirect('proyek/create')->with('error','Data Gagal Disimpan');
+            return redirect('admin/proyek/create')->with('error','Data Gagal Disimpan');
         }
     }
 

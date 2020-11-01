@@ -90,7 +90,7 @@
 
                 var kodeProyek = $(e.relatedTarget).data('id');
 
-                $.get('/proyek/'+kodeProyek, function(data){
+                $.get('/admin/proyek/'+kodeProyek, function(data){
                     $(".modal-body").html(data);
                 });
             });
