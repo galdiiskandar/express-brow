@@ -2,6 +2,14 @@
 
 @section('addressTitle','Data Pelanggan')
 
+@section('customStyle')
+    <style>
+        #tambahButton {
+            margin: 0 0 3% 3%;
+        }
+    </style>
+@endsection
+
 @section('contentHere')
         <div class="container-fluid">
             <div class="row">

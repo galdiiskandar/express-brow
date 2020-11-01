@@ -48,31 +48,32 @@ class LoginController extends Controller
     }
 
     public function login(Request $request)
-{
-    $this->validate($request, [
-        //username validation
-        'username' => 'required|string',
-        'password' => 'required|string',
-    ]);
+    {
+      $this->validate($request, [
+          //username validation
+          'username' => 'required|string',
+          'password' => 'required|string',
+      ]);
 
-    //do validation, if input is username, it will use username, unless this will use email
-    $loginType = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email_user' : 'username';
+      //do validation, if input is username, it will use username, unless this will use email
 
-    $login = [
-        $loginType => $request->username,
-        'password' => $request->password
-    ];
+      $loginType = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email_user' : 'username';
 
-    // login validate
-    if (auth()->attempt($login)) {
-        //if success
-        return redirect()->route('barang.index');
+      $login = [
+          $loginType => $request->username,
+          'password' => $request->password
+      ];
 
+      // login validate
+      if (auth()->attempt($login)) {
+          //if success
+          return redirect()->route('barang.index');
+
+      }
+
+      //else, will show flash notification
+      return redirect()->route('login')->with(['error' => 'Email/Password salah!']);
+      }
+    
     }
-    //else, will show flash notification
-    // return redirect()->route('login')->with(['error' => 'Email/Password salah!']);
-    Session::flash('error', 'Invalid Username or Password !');
-
-    return Redirect::to('login');
-}
 }
