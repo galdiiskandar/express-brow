@@ -83,9 +83,9 @@ class BarangController extends Controller
         if($insertData){
             $gambarProduk->move('images',$gambarName);
 
-            return redirect('barang')->with('success','Data Berhasil Disimpan');
+            return redirect('admin/barang')->with('success','Data Berhasil Disimpan');
         }else{
-            return redirect('barang/create')->with('error','Data Gagal Disimpan');
+            return redirect('admin/barang/create')->with('error','Data Gagal Disimpan');
         }
 
     }
