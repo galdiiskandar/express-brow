@@ -31,4 +31,7 @@ Route::group(['prefix' => 'admin'], function () {
 
     //Pelanggan
     Route::resource('pelanggan', 'PelangganController');
+
+    //Front Site Configurator
+    Route::resource('pengaturan-konten', 'FrontSiteConfigController');
 });
