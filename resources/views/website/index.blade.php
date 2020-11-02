@@ -1,6 +1,18 @@
 {{-- call template --}}
 @extends('layouts.website-template')
 
+{{-- Custom Style, drop custom style here --}}
+@section('customStyle')
+    <style>
+        section.jumbotron.text-center{
+            background-image:url('{{ url('/images/'.$content->bannerHome) }}');
+            background-position: center;
+            background-size: cover;
+            color: #fff;
+        }
+    </style>
+@endsection
+
 {{-- Address Title | Above the browser --}}
 @section('addressTitle','Gypsum')
 
@@ -61,15 +73,28 @@
                 <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
             </ol>
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img class="d-block w-100" src="https://dummyimage.com/855x365/55595c/fff" alt="First slide">
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src="https://dummyimage.com/855x365/a30ca3/fff" alt="Second slide">
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src="https://dummyimage.com/855x365/1443ff/fff" alt="Third slide">
-                </div>
+                @if ($content == null)
+                    <div class="carousel-item active">
+                        <img class="d-block w-100" src="https://dummyimage.com/855x365/55595c/fff" alt="First slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="https://dummyimage.com/855x365/a30ca3/fff" alt="Second slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="https://dummyimage.com/855x365/1443ff/fff" alt="Third slide">
+                    </div>
+                @else
+                    <div class="carousel-item active">
+                        <img class="d-block w-100" src="{{ url('/images/'.$content->bannerPromo1) }}" alt="First slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="{{ url('/images/'.$content->bannerPromo2) }}" alt="Second slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="{{ url('/images/'.$content->bannerPromo3) }}" alt="Third slide">
+                    </div>
+                @endif
+
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>

@@ -22,12 +22,6 @@
                 </div>
                 <div class="card-body">
 
-                    {{-- @if ($barang->kode_produk == "")
-                        SAT
-                    @else
-                        asdasd
-                    @endif --}}
-
                     @if ($barang->kode_produk == "")
                         <form method="POST" action="{{ route('barang.store') }}" enctype="multipart/form-data">
                     @else

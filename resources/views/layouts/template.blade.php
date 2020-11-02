@@ -107,17 +107,24 @@
             <!--left side nav-->
             <ul class="navbar-nav left-side-nav" id="accordion">
 
-                <li class="nav-item {{ Request::routeIs('barang.*') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Calendar">
+                <li class="nav-item {{ Request::routeIs('barang.*') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Data Produk">
                     <a class="nav-link" href="{{ route('barang.index') }}">
                         <i class="fa fa-cubes"></i>
                         <span class="nav-link-text">Data Produk</span>
                     </a>
                 </li>
 
-                <li class="nav-item {{ Request::routeIs('proyek.*') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Calendar">
+                <li class="nav-item {{ Request::routeIs('proyek.*') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Data Proyek">
                     <a class="nav-link" href="{{ route('proyek.index') }}">
                         <i class="fa fa-building"></i>
                         <span class="nav-link-text">Data Proyek</span>
+                    </a>
+                </li>
+
+                <li class="nav-item {{ Request::routeIs('pengaturan-konten.*') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Pengaturan Konten">
+                    <a class="nav-link" href="{{ route('pengaturan-konten.index') }}">
+                        <i class="fa fa-edit"></i>
+                        <span class="nav-link-text">Pengaturan Konten</span>
                     </a>
                 </li>
 
