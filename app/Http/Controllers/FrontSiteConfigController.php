@@ -144,149 +144,149 @@ class FrontSiteConfigController extends Controller
         $bannerPromo2 = $request->file('bannerPromo2');
         $bannerPromo3 = $request->file('bannerPromo3');
 
-        if(($bannerHome == null) && ($bannerPromo1 == null)){
-            //Banner Promo name
-            $bannerPromo2name = time().'_'.'Banner-Promo-2'.'_'.'.'.$request->bannerPromo2->extension();
-            $bannerPromo3name = time().'_'.'Banner-Promo-3'.'_'.'.'.$request->bannerPromo3->extension();
+        // if(($bannerHome == null) && ($bannerPromo1 == null)){
+        //     //Banner Promo name
+        //     $bannerPromo2name = time().'_'.'Banner-Promo-2'.'_'.'.'.$request->bannerPromo2->extension();
+        //     $bannerPromo3name = time().'_'.'Banner-Promo-3'.'_'.'.'.$request->bannerPromo3->extension();
 
-            $data = [
-                'bannerPromo2'  => $bannerPromo2name,
-                'bannerPromo3'  => $bannerPromo3name,
-                'contact'       => $request->contact,
-            ];
+        //     $data = [
+        //         'bannerPromo2'  => $bannerPromo2name,
+        //         'bannerPromo3'  => $bannerPromo3name,
+        //         'contact'       => $request->contact,
+        //     ];
 
-            $updateData = $frontSiteConfig::where('id',$id)
-                            ->update($data);
+        //     $updateData = $frontSiteConfig::where('id',$id)
+        //                     ->update($data);
 
-            if($updateData){
-                $bannerPromo2->move('images',$bannerPromo2name);
-                $bannerPromo3->move('images',$bannerPromo3name);
+        //     if($updateData){
+        //         $bannerPromo2->move('images',$bannerPromo2name);
+        //         $bannerPromo3->move('images',$bannerPromo3name);
 
-                return redirect('admin/pengaturan-konten')->with('success','Data Berhasil Diperbaharui');
-            }else{
-                return redirect('admin/pengaturan-konten')->with('error','Data Gagal Diperbaharui');
-            }
-        }else if(($bannerHome == null) && ($bannerPromo2 == null)){
+        //         return redirect('admin/pengaturan-konten')->with('success','Data Berhasil Diperbaharui');
+        //     }else{
+        //         return redirect('admin/pengaturan-konten')->with('error','Data Gagal Diperbaharui');
+        //     }
+        // }else if(($bannerHome == null) && ($bannerPromo2 == null)){
 
-            //Banner Promo name
-            $bannerPromo1name = time().'_'.'Banner-Promo-1'.'_'.'.'.$request->bannerPromo1->extension();
-            $bannerPromo3name = time().'_'.'Banner-Promo-3'.'_'.'.'.$request->bannerPromo3->extension();
+        //     //Banner Promo name
+        //     $bannerPromo1name = time().'_'.'Banner-Promo-1'.'_'.'.'.$request->bannerPromo1->extension();
+        //     $bannerPromo3name = time().'_'.'Banner-Promo-3'.'_'.'.'.$request->bannerPromo3->extension();
 
-            $data = [
-                'bannerPromo1'  => $bannerPromo1name,
-                'bannerPromo3'  => $bannerPromo3name,
-                'contact'       => $request->contact,
-            ];
+        //     $data = [
+        //         'bannerPromo1'  => $bannerPromo1name,
+        //         'bannerPromo3'  => $bannerPromo3name,
+        //         'contact'       => $request->contact,
+        //     ];
 
-            $updateData = $frontSiteConfig::where('id',$id)
-                            ->update($data);
+        //     $updateData = $frontSiteConfig::where('id',$id)
+        //                     ->update($data);
 
-            if($updateData){
-                $bannerPromo1->move('images',$bannerPromo1name);
-                $bannerPromo3->move('images',$bannerPromo3name);
+        //     if($updateData){
+        //         $bannerPromo1->move('images',$bannerPromo1name);
+        //         $bannerPromo3->move('images',$bannerPromo3name);
 
-                return redirect('admin/pengaturan-konten')->with('success','Data Berhasil Diperbaharui');
-            }else{
-                return redirect('admin/pengaturan-konten')->with('error','Data Gagal Diperbaharui');
-            }
-        }else if(($bannerHome == null) && ($bannerPromo3 == null)){
+        //         return redirect('admin/pengaturan-konten')->with('success','Data Berhasil Diperbaharui');
+        //     }else{
+        //         return redirect('admin/pengaturan-konten')->with('error','Data Gagal Diperbaharui');
+        //     }
+        // }else if(($bannerHome == null) && ($bannerPromo3 == null)){
 
-            //Banner Promo name
-            $bannerPromo1name = time().'_'.'Banner-Promo-1'.'_'.'.'.$request->bannerPromo1->extension();
-            $bannerPromo2name = time().'_'.'Banner-Promo-2'.'_'.'.'.$request->bannerPromo2->extension();
+        //     //Banner Promo name
+        //     $bannerPromo1name = time().'_'.'Banner-Promo-1'.'_'.'.'.$request->bannerPromo1->extension();
+        //     $bannerPromo2name = time().'_'.'Banner-Promo-2'.'_'.'.'.$request->bannerPromo2->extension();
 
-            $data = [
-                'bannerPromo1'  => $bannerPromo1name,
-                'bannerPromo2'  => $bannerPromo2name,
-                'contact'       => $request->contact,
-            ];
+        //     $data = [
+        //         'bannerPromo1'  => $bannerPromo1name,
+        //         'bannerPromo2'  => $bannerPromo2name,
+        //         'contact'       => $request->contact,
+        //     ];
 
-            $updateData = $frontSiteConfig::where('id',$id)
-                            ->update($data);
+        //     $updateData = $frontSiteConfig::where('id',$id)
+        //                     ->update($data);
 
-            if($updateData){
-                $bannerPromo1->move('images',$bannerPromo1name);
-                $bannerPromo2->move('images',$bannerPromo2name);
+        //     if($updateData){
+        //         $bannerPromo1->move('images',$bannerPromo1name);
+        //         $bannerPromo2->move('images',$bannerPromo2name);
 
-                return redirect('admin/pengaturan-konten')->with('success','Data Berhasil Diperbaharui');
-            }else{
-                return redirect('admin/pengaturan-konten')->with('error','Data Gagal Diperbaharui');
-            }
-        }else if(($bannerPromo1 == null) && ($bannerPromo2 == null)){
-            //Banner home name
-            $bannerHome1name = time().'_'.'Banner-Home-1'.'_'.'.'.$request->bannerHome->extension();
+        //         return redirect('admin/pengaturan-konten')->with('success','Data Berhasil Diperbaharui');
+        //     }else{
+        //         return redirect('admin/pengaturan-konten')->with('error','Data Gagal Diperbaharui');
+        //     }
+        // }else if(($bannerPromo1 == null) && ($bannerPromo2 == null)){
+        //     //Banner home name
+        //     $bannerHome1name = time().'_'.'Banner-Home-1'.'_'.'.'.$request->bannerHome->extension();
 
-            //Banner Promo name
-            $bannerPromo3name = time().'_'.'Banner-Promo-3'.'_'.'.'.$request->bannerPromo3->extension();
+        //     //Banner Promo name
+        //     $bannerPromo3name = time().'_'.'Banner-Promo-3'.'_'.'.'.$request->bannerPromo3->extension();
 
-            $data = [
-                'bannerHome'   => $bannerHome1name,
-                'bannerPromo3'  => $bannerPromo3name,
-                'contact'       => $request->contact,
-            ];
+        //     $data = [
+        //         'bannerHome'   => $bannerHome1name,
+        //         'bannerPromo3'  => $bannerPromo3name,
+        //         'contact'       => $request->contact,
+        //     ];
 
-            $updateData = $frontSiteConfig::where('id',$id)
-                            ->update($data);
+        //     $updateData = $frontSiteConfig::where('id',$id)
+        //                     ->update($data);
 
-            if($updateData){
-                $bannerHome->move('images',$bannerHome1name);
-                $bannerPromo3->move('images',$bannerPromo3name);
+        //     if($updateData){
+        //         $bannerHome->move('images',$bannerHome1name);
+        //         $bannerPromo3->move('images',$bannerPromo3name);
 
-                return redirect('admin/pengaturan-konten')->with('success','Data Berhasil Diperbaharui');
-            }else{
-                return redirect('admin/pengaturan-konten')->with('error','Data Gagal Diperbaharui');
-            }
-        }else if(($bannerPromo2 == null) && ($bannerPromo3 == null)){
-            //Banner home name
-            $bannerHome1name = time().'_'.'Banner-Home-1'.'_'.'.'.$request->bannerHome->extension();
+        //         return redirect('admin/pengaturan-konten')->with('success','Data Berhasil Diperbaharui');
+        //     }else{
+        //         return redirect('admin/pengaturan-konten')->with('error','Data Gagal Diperbaharui');
+        //     }
+        // }else if(($bannerPromo2 == null) && ($bannerPromo3 == null)){
+        //     //Banner home name
+        //     $bannerHome1name = time().'_'.'Banner-Home-1'.'_'.'.'.$request->bannerHome->extension();
 
-            //Banner Promo name
-            $bannerPromo1name = time().'_'.'Banner-Promo-1'.'_'.'.'.$request->bannerPromo1->extension();
+        //     //Banner Promo name
+        //     $bannerPromo1name = time().'_'.'Banner-Promo-1'.'_'.'.'.$request->bannerPromo1->extension();
 
-            $data = [
-                'bannerHome'   => $bannerHome1name,
-                'bannerPromo1'  => $bannerPromo1name,
-                'contact'       => $request->contact,
-            ];
+        //     $data = [
+        //         'bannerHome'   => $bannerHome1name,
+        //         'bannerPromo1'  => $bannerPromo1name,
+        //         'contact'       => $request->contact,
+        //     ];
 
-            $updateData = $frontSiteConfig::where('id',$id)
-                            ->update($data);
+        //     $updateData = $frontSiteConfig::where('id',$id)
+        //                     ->update($data);
 
-            if($updateData){
-                $bannerHome->move('images',$bannerHome1name);
-                $bannerPromo1->move('images',$bannerPromo1name);
+        //     if($updateData){
+        //         $bannerHome->move('images',$bannerHome1name);
+        //         $bannerPromo1->move('images',$bannerPromo1name);
 
-                return redirect('admin/pengaturan-konten')->with('success','Data Berhasil Diperbaharui');
-            }else{
-                return redirect('admin/pengaturan-konten')->with('error','Data Gagal Diperbaharui');
-            }
-        }else if(($bannerPromo1 == null) && ($bannerPromo3 == null)){
-            //Banner home name
-            $bannerHome1name = time().'_'.'Banner-Home-1'.'_'.'.'.$request->bannerHome->extension();
+        //         return redirect('admin/pengaturan-konten')->with('success','Data Berhasil Diperbaharui');
+        //     }else{
+        //         return redirect('admin/pengaturan-konten')->with('error','Data Gagal Diperbaharui');
+        //     }
+        // }else if(($bannerPromo1 == null) && ($bannerPromo3 == null)){
+        //     //Banner home name
+        //     $bannerHome1name = time().'_'.'Banner-Home-1'.'_'.'.'.$request->bannerHome->extension();
 
-            //Banner Promo name
-            $bannerPromo2name = time().'_'.'Banner-Promo-2'.'_'.'.'.$request->bannerPromo2->extension();
+        //     //Banner Promo name
+        //     $bannerPromo2name = time().'_'.'Banner-Promo-2'.'_'.'.'.$request->bannerPromo2->extension();
 
-            $data = [
-                'bannerHome'   => $bannerHome1name,
-                'bannerPromo2'  => $bannerPromo2name,
-                'contact'       => $request->contact,
-            ];
+        //     $data = [
+        //         'bannerHome'   => $bannerHome1name,
+        //         'bannerPromo2'  => $bannerPromo2name,
+        //         'contact'       => $request->contact,
+        //     ];
 
-            $updateData = $frontSiteConfig::where('id',$id)
-                            ->update($data);
+        //     $updateData = $frontSiteConfig::where('id',$id)
+        //                     ->update($data);
 
-            if($updateData){
-                $bannerHome->move('images',$bannerHome1name);
-                $bannerPromo2->move('images',$bannerPromo2name);
+        //     if($updateData){
+        //         $bannerHome->move('images',$bannerHome1name);
+        //         $bannerPromo2->move('images',$bannerPromo2name);
 
-                return redirect('admin/pengaturan-konten')->with('success','Data Berhasil Diperbaharui');
-            }else{
-                return redirect('admin/pengaturan-konten')->with('error','Data Gagal Diperbaharui');
-            }
-        }else if(($bannerPromo1 == null) && ($bannerPromo2 == null) && ($bannerPromo3 == null)){
+        //         return redirect('admin/pengaturan-konten')->with('success','Data Berhasil Diperbaharui');
+        //     }else{
+        //         return redirect('admin/pengaturan-konten')->with('error','Data Gagal Diperbaharui');
+        //     }
+        // }else if(($bannerPromo1 == null) && ($bannerPromo2 == null) && ($bannerPromo3 == null)){
 
-        // if(($bannerPromo1 == null) && ($bannerPromo2 == null) && ($bannerPromo3 == null)){
+        if(($bannerPromo1 == null) && ($bannerPromo2 == null) && ($bannerPromo3 == null)){
             //Banner home name
             $bannerHome1name = time().'_'.'Banner-Home-1'.'_'.'.'.$request->bannerHome->extension();
 
