@@ -30,7 +30,13 @@ class ProyekController extends Controller
      */
     public function create()
     {
-        return view('admin/proyek.form');
+        $proyeks = new Proyek();
+
+        $proyek =  (object) $proyeks->getDefaultValues();
+
+        return view('admin/proyek.form',[
+            'proyek' => $proyek
+        ]);
     }
 
     /**
@@ -100,9 +106,15 @@ class ProyekController extends Controller
      * @param  \App\Proyek  $proyek
      * @return \Illuminate\Http\Response
      */
-    public function edit(Proyek $proyek)
+    public function edit($id)
     {
-        //
+        $proyek = new Proyek();
+
+        $findProyek = $proyek::where('kode_proyek',$id)->first();
+
+        return view('admin/proyek.form',[
+            'proyek' => $findProyek,
+        ]);
     }
 
     /**
@@ -112,9 +124,53 @@ class ProyekController extends Controller
      * @param  \App\Proyek  $proyek
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Proyek $proyek)
+    public function update(Request $request)
     {
-        //
+        $proyek = new Proyek();
+
+
+        if($request->gambarProyek == null){
+            $dataWoPhoto = [
+                'nama_proyek' => $request->namaProyek,
+                'deskripsi_proyek' => $request->deskripsiProyek,
+                'status_proyek'=> $request->statusProyek
+            ];
+
+            $updateProyek = $proyek::where('kode_proyek', $request->kodeProyek)
+                                    ->update($dataWoPhoto);
+
+            if($updateProyek){
+                return redirect('admin/proyek')->with('success','Data Berhasil Diperbaharui');
+            }else{
+                return redirect('admin/proyek/'.$request->kodeProyek.'/edit')->with('error','Data Gagal Diperbaharui');
+            }
+
+        }else{
+
+            $gambarProyek = $request->file('gambarProyek');
+
+            $gambarName = time().'_'.$request->namaProyek.'_'.'.'.$request->gambarProyek->extension();
+
+            $dataWPhoto = [
+                'nama_proyek' => $request->namaProyek,
+                'deskripsi_proyek' => $request->deskripsiProyek,
+                'status_proyek'=> $request->statusProyek,
+                'gambar_proyek' => $gambarName
+            ];
+
+            $updateProyek = $proyek::where('kode_proyek', $request->kodeProyek)
+                                    ->update($dataWPhoto);
+
+            if($updateProyek){
+                $gambarProyek->move('images',$gambarName);
+
+                return redirect('admin/proyek')->with('success','Data Berhasil Diperbaharui');
+            }else{
+                return redirect('admin/proyek/'.$request->kodeProyek.'/edit')->with('error','Data Gagal Diperbaharui');
+            }
+
+        }
+
     }
 
     /**

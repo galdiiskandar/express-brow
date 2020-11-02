@@ -21,39 +21,52 @@
                     @endif
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('proyek.store') }}" enctype="multipart/form-data">
+                    @if ($proyek->kode_proyek == "")
+                        <form method="POST" action="{{ route('proyek.store') }}" enctype="multipart/form-data">
+                    @else
+                        <form method="POST" action="{{ route('proyek.update', $proyek->kode_proyek) }}" enctype="multipart/form-data">
+                            @method('PUT')
+                    @endif
                         @csrf
-                        <div class="form-group">
-                            <label for="kodeProyek">Kode Proyek</label>
-                            <input class="form-control" id="kodeProyek" name="kodeProyek" type="text"
-                                placeholder="Masukan Kode Proyek">
-                        </div>
+                            <div class="form-group">
+                                <label for="kodeProyek">Kode Proyek</label>
+                                <input class="form-control" id="kodeProyek" name="kodeProyek" type="text"
+                                    placeholder="Masukan Kode Proyek" value="{{ old('proyek', $proyek->kode_proyek) }}" {{ $proyek->kode_proyek ? "readonly=true" : "" }}>
+                            </div>
 
-                        <div class="form-group">
-                            <label for="namaProyek">Nama Proyek</label>
-                            <input class="form-control" id="namaPrpyek" name="namaProyek"
-                                placeholder="Masukan Nama Proyek">
-                        </div>
-                        <div class="form-group">
-                            <label for="deskripsiProyek">Deskripsi Proyek</label>
-                            <textarea class="form-control" name="deskripsiProyek"></textarea>
-                        </div>
+                            <div class="form-group">
+                                <label for="namaProyek">Nama Proyek</label>
+                                <input class="form-control" id="namaPrpyek" name="namaProyek"
+                                    placeholder="Masukan Nama Proyek" value="{{ old('proyek', $proyek->nama_proyek) }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="deskripsiProyek">Deskripsi Proyek</label>
+                                <textarea class="form-control" name="deskripsiProyek">{{$proyek->deskripsi_proyek}}</textarea>
+                            </div>
 
-                        <div class="form-group">
-                            <label for="gambarProduk"> Gambar Proyek</label>
-                            <input class="form-control" id="gambarProyek" name="gambarProyek" type="file"
-                                >
-                        </div>
+                            @if ($proyek->gambar_proyek)
+                                <label>Preview Gambar</label>
+                                <br>
+                                <img src="{{ url('/images/'.$proyek->gambar_proyek) }}" style="width:150px; height:auto;">
+                            @else
+                                <p></p>
+                            @endif
 
-                        <div class="form-group">
-                            <label for="statusProyek">Status Proyek</label>
-                            <input class="form-control" id="statusProyek" name="statusProyek"
-                                placeholder="Masukan Nama Proyek">
-                        </div>
+                            <div class="form-group">
+                                <label for="gambarProyek"> Gambar Proyek</label>
+                                <input class="form-control" id="gambarProyek" name="gambarProyek" type="file"
+                                    >
+                            </div>
 
-                        <button class="btn btn-secondary" type="reset">Ulang</button>
-                        <button class="btn btn-success btn-submit" type="submit">Simpan</button>
-                    </form>
+                            <div class="form-group">
+                                <label for="statusProyek">Status Proyek</label>
+                                <input class="form-control" id="statusProyek" name="statusProyek"
+                                    placeholder="Masukan Nama Proyek" value="{{ old('proyek', $proyek->status_proyek) }}">
+                            </div>
+
+                            <button class="btn btn-secondary" type="reset">Ulang</button>
+                            <button class="btn btn-success btn-submit" type="submit">Simpan</button>
+                        </form>
                 </div>
             </div>
         </div>
