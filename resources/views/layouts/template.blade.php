@@ -121,6 +121,20 @@
                     </a>
                 </li>
 
+                <li class="nav-item {{ Request::routeIs('pelanggan.*') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Data Pelanggan">
+                    <a class="nav-link" href="{{ route('pelanggan.index') }}">
+                        <i class="fa fa-building"></i>
+                        <span class="nav-link-text">Data Pelanggan</span>
+                    </a>
+                </li>
+
+                <li class="nav-item {{ Request::routeIs('admin.*') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Data Admin">
+                    <a class="nav-link" href="{{ route('admin.index') }}">
+                        <i class="fa fa-building"></i>
+                        <span class="nav-link-text">Data Admin</span>
+                    </a>
+                </li>
+
                 <li class="nav-item {{ Request::routeIs('pengaturan-konten.*') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Pengaturan Konten">
                     <a class="nav-link" href="{{ route('pengaturan-konten.index') }}">
                         <i class="fa fa-edit"></i>

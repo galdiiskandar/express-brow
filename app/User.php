@@ -18,8 +18,18 @@ class User extends Authenticatable
 
     protected $primaryKey = 'kode_user';
 
+    public $incrementing = false;
+
     protected $fillable = [
-        'name', 'email', 'password',
+        'kode_user',
+        'username',
+        'password',
+        'nama_user',
+        'alamat',
+        'no_telp_user',
+        'email_user',
+        'foto_user',
+        'status'
     ];
 
     /**
@@ -28,7 +38,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
 
     /**
@@ -39,4 +50,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getDefaultValues()
+    {
+        return [
+            'kode_user'  => '',
+            'username'  => '',
+            'password'  => '',
+            'nama_user'  => '',
+            'alamat'  => '',
+            'no_telp_user'  => '',
+            'email_user'  => '',
+            'foto_user'  => '',
+            'status'  => ''
+        ];
+    }
 }

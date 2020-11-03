@@ -22,6 +22,9 @@ Auth::routes();
 //Homepage
 Route::get('/','WebsiteController@index');
 
+//Subsriber List
+Route::post('/subscribeList','WebsiteController@store');
+
 Route::group(['prefix' => 'admin'], function () {
     //Barang
     Route::resource('barang', 'BarangController');
@@ -34,4 +37,8 @@ Route::group(['prefix' => 'admin'], function () {
 
     //Front Site Configurator
     Route::resource('pengaturan-konten', 'FrontSiteConfigController');
+
+    //Admin
+    Route::resource('admin', 'AdminController');
+
 });

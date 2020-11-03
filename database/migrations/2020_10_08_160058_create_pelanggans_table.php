@@ -20,6 +20,7 @@ class CreatePelanggansTable extends Migration
             $table->string('no_telp_pelanggan',20);
             $table->string('alamat_pelanggan',20);
             $table->string('keterangan_pelanggan',20);
+            $table->char('status',1);
             $table->timestamps();
             $table->softDeletes();
         });
