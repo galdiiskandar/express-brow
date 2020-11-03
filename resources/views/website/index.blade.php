@@ -36,6 +36,13 @@
             {{-- <img class="img-fluid border-0" src="https://dummyimage.com/600x400/55595c/fff" alt="Card image cap"> --}}
             <div class="card-body">
                 <h4 class="card-title text-center"><a href="product.html" title="View Product">Product title</a></h4>
+                @if ($errors->any())
+                    <div class="alert alert-danger errorAlert">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </div>
+                @endif
                 <div class="row">
                     {{-- <div class="col">
                         <p class="btn btn-danger btn-block">99.00 $</p>
@@ -44,7 +51,8 @@
                         <a href="product.html" class="btn btn-success btn-block">View</a>
                     </div> --}}
                     <div class="col">
-                        <form method="POST" action="#">
+                        <form method="POST" action="/subscribeList">
+                            @csrf
                             <div class="form-group">
                                 <label>Nama</label>
 

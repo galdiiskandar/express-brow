@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 use Session;
 use Illuminate\Support\Facades\Redirect;
 
-
 class LoginController extends Controller
 {
     /*
