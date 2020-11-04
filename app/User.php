@@ -65,4 +65,8 @@ class User extends Authenticatable
             'status'  => ''
         ];
     }
+
+    public function transaksis(){
+    	return $this->hasMany('App\Transaksi');
+    }
 }

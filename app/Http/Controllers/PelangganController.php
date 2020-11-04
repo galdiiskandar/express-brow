@@ -53,6 +53,9 @@ class PelangganController extends Controller
      */
     public function store(Request $request)
     {
+        if($request->statusPelanggan == null)
+            $request->statusPelanggan = 0;
+
         $pelanggan = new Pelanggan();
 
         // dd($request->all());
@@ -127,6 +130,10 @@ class PelangganController extends Controller
      */
     public function update(Request $request)
     {
+
+        if($request->statusPelanggan == null)
+            $request->statusPelanggan = 0;
+
         $pelanggan = new Pelanggan();
 
         $data = [

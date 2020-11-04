@@ -7,11 +7,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Proyek extends Model
 {
-
-    protected $primaryKey = 'kode_proyek';
-
-    public $incrementing = false;
-
     //define soft deletes
     use SoftDeletes;
 
@@ -37,5 +32,9 @@ class Proyek extends Model
             'status_proyek' => '',
             'gambar_proyek' => ''
         ];
+    }
+
+    public function transaksis(){
+    	return $this->hasMany('App\Transaksi');
     }
 }

@@ -18,6 +18,11 @@
                         <div class="card-header border-0">
                             <div class="custom-title-wrap bar-primary">
                                 <div class="custom-title">Data Admin</div>
+                                @if (Session::has('success'))
+                                    <div class="alert alert-success successAlert">
+                                        <p>{{ Session::get('success') }}</p>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                         <div class="card-body- pt-3 pb-4">
