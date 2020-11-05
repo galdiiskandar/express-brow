@@ -41,11 +41,8 @@ class Barang extends Model
             'keterangan' => '',
         ];
     }
-<<<<<<< Updated upstream
-=======
 
     public function detail_transaksis(){
     	return $this->hasMany('App\DetailTransaksi');
     }
->>>>>>> Stashed changes
 }

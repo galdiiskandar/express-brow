@@ -3,7 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Transaksi;
+use App\Proyek;
+use App\Pelanggan;
+use App\Barang;
+use App\DetailTransaksi;
 use Illuminate\Http\Request;
+
+use Auth;
 
 class TransaksiController extends Controller
 {
@@ -14,17 +20,16 @@ class TransaksiController extends Controller
      */
     public function index()
     {
-<<<<<<< Updated upstream
-        //
-=======
+
         $transkasi = new Transaksi();
 
         $selectTransaksi = Transaksi::all();
 
+
         return view('admin/transaksi.index',[
             'transaksis' => $selectTransaksi
         ]);
->>>>>>> Stashed changes
+
     }
 
     /**
@@ -34,9 +39,6 @@ class TransaksiController extends Controller
      */
     public function create()
     {
-<<<<<<< Updated upstream
-        //
-=======
         $transaksis = new Transaksi();
 
         $transaksi =  (object) $transaksis->getDefaultValues();
@@ -47,6 +49,7 @@ class TransaksiController extends Controller
 
         $selectProyek = Proyek::select('kode_proyek','nama_proyek')->get();
         $selectPelanggan = Pelanggan::select('kode_pelanggan','nama_pelanggan')->get();
+
         $selectProduk = Barang::all();
 
         return view('admin/transaksi.form',[
@@ -56,7 +59,6 @@ class TransaksiController extends Controller
             'produk' => $selectProduk,
             'produk1' => $selectProduk
         ]);
->>>>>>> Stashed changes
     }
 
     /**
@@ -67,13 +69,11 @@ class TransaksiController extends Controller
      */
     public function store(Request $request)
     {
-<<<<<<< Updated upstream
-        //
-=======
-        $r = count($request->qtyProduk);
 
-        $transaksi = new Transaksi();
-        $detailtransaksi = new DetailTransaksi();
+      $r = count($request->qtyProduk);
+
+      $transaksi = new Transaksi();
+      $detailtransaksi = new DetailTransaksi();
 
         // dd($request->all());
 
@@ -112,7 +112,6 @@ class TransaksiController extends Controller
         }else{
             return redirect('admin/transaksi/create')->with('error','Data Gagal Disimpan');
         }
->>>>>>> Stashed changes
     }
 
     /**
@@ -121,9 +120,13 @@ class TransaksiController extends Controller
      * @param  \App\Transaksi  $transaksi
      * @return \Illuminate\Http\Response
      */
-    public function show(Transaksi $transaksi)
+    public function show($id)
     {
-        //
+        $transaksi = new Transaksi();
+
+        $dataTransaksi = $transaksi::where('kode_transaksi',$id)->get();
+
+        return view('admin/transaksi.show',['dataTransaksi'=>$dataTransaksi])->render();
     }
 
     /**

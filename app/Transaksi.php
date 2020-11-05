@@ -6,9 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Transaksi extends Model
 {
-<<<<<<< Updated upstream
-    //
-=======
     protected $table = 'transaksis';
 
     protected $primaryKey = 'kode_transaksi';
@@ -44,6 +41,7 @@ class Transaksi extends Model
     }
 
     public function detail_transaksis(){
+
     	return $this->hasMany('App\DetailTransaksi');
     }
     public function users(){
@@ -55,5 +53,4 @@ class Transaksi extends Model
     public function pelanggans(){
         return $this->belongsTo('App\Pelanggan');
     }
->>>>>>> Stashed changes
 }

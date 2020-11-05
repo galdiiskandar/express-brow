@@ -7,16 +7,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Proyek extends Model
 {
-<<<<<<< Updated upstream
-
     protected $primaryKey = 'kode_proyek';
 
     public $incrementing = false;
-=======
-    protected $table = 'proyeks';
->>>>>>> Stashed changes
 
-    //define soft deletes
+  //define soft deletes
     use SoftDeletes;
 
     protected $primaryKey = 'kode_proyek';
@@ -45,5 +40,9 @@ class Proyek extends Model
             'status_proyek' => '',
             'gambar_proyek' => ''
         ];
+    }
+
+    public function transaksis(){
+    	return $this->hasMany('App\Transaksi');
     }
 }
