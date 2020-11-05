@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Transaksi extends Model
 {
+    protected $table = 'transaksis';
 
-    // protected $primaryKey = 'kode_transaksi';
+    protected $primaryKey = 'kode_transaksi';
 
-    // public $incrementing = false;
+    public $incrementing = false;
 
     protected $fillable = [
         'kode_transaksi',
@@ -39,7 +40,8 @@ class Transaksi extends Model
         ];
     }
 
-    public function detail_transaksi(){
+    public function detail_transaksis(){
+
     	return $this->hasMany('App\DetailTransaksi');
     }
     public function users(){

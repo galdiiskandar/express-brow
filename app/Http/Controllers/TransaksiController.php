@@ -20,15 +20,16 @@ class TransaksiController extends Controller
      */
     public function index()
     {
+
         $transkasi = new Transaksi();
 
         $selectTransaksi = Transaksi::all();
 
-        // dd($selectTransaksi);
 
         return view('admin/transaksi.index',[
             'transaksis' => $selectTransaksi
         ]);
+
     }
 
     /**
@@ -48,13 +49,15 @@ class TransaksiController extends Controller
 
         $selectProyek = Proyek::select('kode_proyek','nama_proyek')->get();
         $selectPelanggan = Pelanggan::select('kode_pelanggan','nama_pelanggan')->get();
-        $selectProduk = Barang::select('kode_produk','nama_produk')->get();
+
+        $selectProduk = Barang::all();
 
         return view('admin/transaksi.form',[
             'transaksi' => $transaksi,
             'proyek' => $selectProyek,
             'pelanggan' => $selectPelanggan,
-            'produk' => $selectProduk
+            'produk' => $selectProduk,
+            'produk1' => $selectProduk
         ]);
     }
 
@@ -66,8 +69,11 @@ class TransaksiController extends Controller
      */
     public function store(Request $request)
     {
-        $transaksi = new Transaksi();
-        $detailtransaksi = new DetailTransaksi();
+
+      $r = count($request->qtyProduk);
+
+      $transaksi = new Transaksi();
+      $detailtransaksi = new DetailTransaksi();
 
         // dd($request->all());
 
@@ -90,15 +96,16 @@ class TransaksiController extends Controller
 
         $insertData = $transaksi::create($data);
 
-        $dataDT = [
-            'kode_transaksi' => $request->kodeTransaksi,
-            'kode_produk' => $request->kodeProduk,
-            'qty' => 0,
-            'harga' => 0
-        ];
+        for($i=0; $i<$r; $i++){
+            $dataDT = [
+                'kode_transaksi' => $request->kodeTransaksi,
+                'kode_produk' => $request->kodeProduk[$i],
+                'qty' => $request->qtyProduk[$i],
+                'harga' => $request->hargaProduk[$i]
+            ];
 
-        $insertDataDT = $detailtransaksi::create($dataDT);
-
+            $insertDataDT = $detailtransaksi::create($dataDT);
+        }
 
         if($insertDataDT){
             return redirect('admin/transaksi')->with('success','Data Berhasil Disimpan');
