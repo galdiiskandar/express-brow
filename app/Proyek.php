@@ -7,13 +7,21 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Proyek extends Model
 {
+<<<<<<< Updated upstream
 
     protected $primaryKey = 'kode_proyek';
 
     public $incrementing = false;
+=======
+    protected $table = 'proyeks';
+>>>>>>> Stashed changes
 
     //define soft deletes
     use SoftDeletes;
+
+    protected $primaryKey = 'kode_proyek';
+
+    public $incrementing = false;
 
     protected $fillable = [
         'kode_proyek',

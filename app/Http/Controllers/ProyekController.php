@@ -47,6 +47,9 @@ class ProyekController extends Controller
      */
     public function store(Request $request)
     {
+        if($request->statusProyek == null)
+            $request->statusProyek = 0;
+
         $proyek = new Proyek();
 
         // dd($request->all());
@@ -126,8 +129,10 @@ class ProyekController extends Controller
      */
     public function update(Request $request)
     {
-        $proyek = new Proyek();
+        if($request->statusProyek == null)
+            $request->statusProyek = 0;
 
+        $proyek = new Proyek();
 
         if($request->gambarProyek == null){
             $dataWoPhoto = [
