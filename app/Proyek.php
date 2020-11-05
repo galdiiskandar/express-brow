@@ -14,10 +14,6 @@ class Proyek extends Model
   //define soft deletes
     use SoftDeletes;
 
-    protected $primaryKey = 'kode_proyek';
-
-    public $incrementing = false;
-
     protected $fillable = [
         'kode_proyek',
         'nama_proyek',
