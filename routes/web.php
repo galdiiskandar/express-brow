@@ -23,7 +23,7 @@ Auth::routes();
 Route::get('/','WebsiteController@index');
 
 //Subsriber List
-Route::post('/subscribeList','WebsiteController@store');
+Route::post('/subscribeList','WebsiteController@store')->name('subscribelist.store');
 
 Route::group(['prefix' => 'admin'], function () {
     //Barang
@@ -41,4 +41,6 @@ Route::group(['prefix' => 'admin'], function () {
     //Admin
     Route::resource('admin', 'AdminController');
 
+    //Transaksi
+    Route::resource('transaksi', 'TransaksiController');
 });

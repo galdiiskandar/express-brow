@@ -36,4 +36,8 @@ class Barang extends Model
             'keterangan' => '',
         ];
     }
+
+    public function detail_transaksi(){
+    	return $this->hasMany('App\DetailTransaksi');
+    }
 }

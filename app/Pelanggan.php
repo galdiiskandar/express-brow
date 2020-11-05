@@ -37,4 +37,8 @@ class Pelanggan extends Model
             'status' => ''
         ];
     }
+
+    public function transaksis(){
+    	return $this->hasMany('App\Transaksi');
+    }
 }

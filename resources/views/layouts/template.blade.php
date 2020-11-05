@@ -44,9 +44,74 @@
     <!--custom styles-->
     <link href="{{ asset('assets/css/main.css')}}" rel="stylesheet">
 
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{ asset('assets/vendor/select2/css/select2.css')}}">
+
     <style>
         .light-s{
             color:#fff !important;
+        }
+    </style>
+
+    <style>
+        .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+        }
+
+        .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+        }
+
+        .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+        }
+
+        .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+        }
+
+        input:checked + .slider {
+        background-color: #2196F3;
+        }
+
+        input:focus + .slider {
+        box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+        }
+
+        /* Rounded sliders */
+        .slider.round {
+        border-radius: 34px;
+        }
+
+        .slider.round:before {
+        border-radius: 50%;
         }
     </style>
 
@@ -139,6 +204,13 @@
                     <a class="nav-link" href="{{ route('pengaturan-konten.index') }}">
                         <i class="fa fa-edit"></i>
                         <span class="nav-link-text">Pengaturan Konten</span>
+                    </a>
+                </li>
+
+                <li class="nav-item {{ Request::routeIs('transaksi.*') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Data Transaksi">
+                    <a class="nav-link" href="{{ route('transaksi.index') }}">
+                        <i class="fa fa-edit"></i>
+                        <span class="nav-link-text">Data Transaksi</span>
                     </a>
                 </li>
 
@@ -289,6 +361,9 @@
     <!--datatables-->
     <script src="{{ asset('assets/vendor/data-tables/jquery.dataTables.min.js')}}"></script>
     <script src="{{ asset('assets/vendor/data-tables/dataTables.bootstrap4.min.js')}}"></script>
+
+    <!-- Select2 -->
+    <script src="{{ asset('assets/vendor/select2/js/select2.min.js')}}"></script>
 
     <!-- Script Place -->
     @yield('scriptPlace')

@@ -35,7 +35,12 @@
             </div>
             {{-- <img class="img-fluid border-0" src="https://dummyimage.com/600x400/55595c/fff" alt="Card image cap"> --}}
             <div class="card-body">
-                <h4 class="card-title text-center"><a href="product.html" title="View Product">Product title</a></h4>
+                {{-- <h4 class="card-title text-center"><a href="product.html" title="View Product">Product title</a></h4> --}}
+                @if (Session::has('success'))
+                    <div class="alert alert-success successAlert">
+                        <p>{{ Session::get('success') }}</p>
+                    </div>
+                @endif
                 @if ($errors->any())
                     <div class="alert alert-danger errorAlert">
                         @foreach ($errors->all() as $error)
@@ -51,7 +56,7 @@
                         <a href="product.html" class="btn btn-success btn-block">View</a>
                     </div> --}}
                     <div class="col">
-                        <form method="POST" action="/subscribeList">
+                        <form method="POST" action="{{ route('subscribelist.store') }}">
                             @csrf
                             <div class="form-group">
                                 <label>Nama</label>

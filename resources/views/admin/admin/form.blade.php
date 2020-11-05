@@ -48,11 +48,13 @@
                                 placeholder="Username" value="{{ old('admin', $admin->username) }}" {{ $admin->username ? "readonly=true" : "" }}>
                         </div>
 
+                        @if($admin->password == null)
                         <div class="form-group">
                             <label for="passwordAdmin">Password</label>
                             <input class="form-control" id="passwordAdmin" name="passwordAdmin" type="password"
-                                placeholder="Password" value="{{ old('admin', $admin->password) }}" {{ $admin->password ? "readonly=true" : "" }}>
+                                placeholder="Password">
                         </div>
+                        @endif
 
                         <div class="form-group">
                             <label for="namauserAdmin">Nama User</label>
@@ -84,8 +86,12 @@
 
                         <div class="form-group">
                             <label for="statusAdmin">Status</label>
-                            <input class="form-control" id="statusAdmin" name="statusAdmin" type="text"
-                                placeholder="Status Admin" value="{{ old('admin', $admin->status) }}">
+                            <div class="form-group">
+                                <label class="switch">
+                                    <input type="checkbox" id="statusAdmin" name="statusAdmin" value="1" {{ $admin->status==1 ? "checked='checked'" : "" }}>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
                         </div>
 
                         <a class="btn btn btn-info" href="{{ route('admin.index') }}">←</a>
