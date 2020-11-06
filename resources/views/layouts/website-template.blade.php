@@ -39,9 +39,16 @@
                 </li>
             </ul>
 
-            <a class="btn btn-success btn-sm ml-3" href="{{ route('login') }}">
-                <i class="fa fa-sign-in"></i> Login
-            </a>
+            @if (Auth::user())
+                <a class="btn btn-success btn-sm ml-3" href="{{ route('barang.index') }}">
+                    <i class="fa fa-sign-in"></i> Beranda
+                </a>
+            @else
+                <a class="btn btn-success btn-sm ml-3" href="{{ route('login') }}">
+                    <i class="fa fa-sign-in"></i> Login
+                </a>
+            @endif
+
 
         </div>
     </div>

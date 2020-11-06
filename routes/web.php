@@ -41,4 +41,15 @@ Route::group(['prefix' => 'admin'], function () {
     //Admin
     Route::resource('admin', 'AdminController');
 
+    //Subscriber List
+    Route::get('subscriber-list','SubscriberListController@index')->name('subscriber-list.index');
+    Route::post('subscriber-list/send-email','SubscriberListController@SendEmail')->name('subscriber-list.send');
+
+    //promo
+    Route::resource('promo', 'PromoController');
+
+});
+
+Route::get('staging/email-content',function(){
+    return view('email.mail');
 });

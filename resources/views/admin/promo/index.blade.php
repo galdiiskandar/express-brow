@@ -1,11 +1,11 @@
 @extends('layouts.template')
 
-@section('addressTitle','Data Proyek')
+@section('addressTitle','Data Promo')
 
 @section('customStyle')
     <style>
         #tambahButton {
-            margin: 0 0 3% 3%;
+            margin: 0 0 3% 2%;
         }
     </style>
 @endsection
@@ -17,31 +17,30 @@
                     <div class="card card-shadow mb-4">
                         <div class="card-header border-0">
                             <div class="custom-title-wrap bar-primary">
-                                <div class="custom-title">Data Proyek</div>
+                                <div class="custom-title">Data Promo</div>
                             </div>
+                            @if (Session::has('success'))
+                                <div class="alert alert-success successAlert">
+                                    <p>{{ Session::get('success') }}</p>
+                                </div>
+                            @endif
                         </div>
-                        <div class="card-body pt-3 pb-4">
-                            <a class="btn btn-primary" id="tambahButton" href="{{ route('proyek.create') }}"> <i class="fa fa-book"></i> Tambah Proyek </a>
-                            <table class="table table-stripped" id="tableProyek">
+                        <div class="card-body- pt-3 pb-4">
+                            <a class="btn btn-primary" id="tambahButton" href="{{ route('promo.create') }}"> <i class="fa fa-book"></i> Tambah Promo </a>
+                            <table class="table table-stripped" id="tablePromo">
                                 <thead>
                                     <th>No.</th>
-                                    <th>Kode Proyek</th>
-                                    <th>Nama Proyek</th>
-                                    <th>Deskripsi Proyek</th>
-                                    <th>Status Proyek</th>
+                                    <th>Nama</th>
+                                    <th>Aksi</th>
                                 </thead>
                                 <tbody>
-                                    @foreach ($proyeks as $pry => $proyek)
+                                    @foreach ($promos as $prs => $promo)
                                         <tr>
-                                            <td>{{ ++$pry }}</td>
-                                            <td>{{ $proyek->kode_proyek }}</td>
-                                            <td>{{ $proyek->nama_proyek }}</td>
-                                            <td>{{ $proyek->deskripsi_proyek }}</td>
+                                            <td>{{ ++$prs }}</td>
+                                            <td>{{ $promo->nama }}</td>
                                             <td>
-                                                <a class="btn btn-sm btn-info light-s" data-toggle="modal" data-id="{{ $proyek->kode_proyek }}" data-target="#detailProyekModal"><span class="fa fa-eye"></span></a>
-                                                <a class="btn btn-sm btn-warning light-s" href="{{ route('proyek.edit', $proyek->kode_proyek) }}"><span class="fa fa-pencil"></span></a>
-                                                <a class="btn btn-sm btn-danger light-s"><span class="fa fa-trash"></span></a>
-                                                <a class="btn btn-sm btn-primary light-s"><span class="fa fa-upload"></span></a>
+                                                <a class="btn btn-sm btn-info light-s" data-toggle="modal" data-id="{{ $promo->kode_promo }}" data-target="#detailPromoModal"><span class="fa fa-eye"></span></a>
+                                                <a class="btn btn-sm btn-warning light-s" href="{{ route('promo.edit', $promo->kode_promo) }}"><span class="fa fa-pencil"></span></a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -55,11 +54,11 @@
 
         <!-- Init Modal -->
 
-        <div class="modal fade bd-example-modal-lg" id="detailProyekModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal fade bd-example-modal-lg" id="detailPromoModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="myLargeModalLabel">Detail Proyek</h4>
+                        <h4 class="modal-title" id="myLargeModalLabel">Detail Barang</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -73,7 +72,6 @@
                 </div>
             </div>
         </div>
-
 @endsection
 
 @section('scriptPlace')
@@ -88,22 +86,22 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#tableProyek').DataTable();
+            $('#tablePromo').DataTable();
         });
     </script>
 
-     <!-- Init Modal -->
-     <script type="text/javascript">
+    <!-- Init Modal -->
+    <script type="text/javascript">
         $(document).ready(function(){
-            $("#detailProyekModal").on('show.bs.modal', function(e){
+            $("#detailPromoModal").on('show.bs.modal', function(e){
 
-                var kodeProyek = $(e.relatedTarget).data('id');
+                var kodePromo = $(e.relatedTarget).data('id');
 
-                $.get('/admin/proyek/'+kodeProyek, function(data){
+                $.get('/admin/promo/'+kodePromo, function(data){
                     $(".modal-body").html(data);
                 });
             });
         });
     </script>
-    <!-- End -->
+<!-- End -->
 @endsection

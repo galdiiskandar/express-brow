@@ -3,14 +3,26 @@
 
 {{-- Custom Style, drop custom style here --}}
 @section('customStyle')
-    <style>
-        section.jumbotron.text-center{
-            background-image:url('{{ url('/images/'.$content->bannerHome) }}');
-            background-position: center;
-            background-size: cover;
-            color: #fff;
-        }
-    </style>
+    @if ($content == null)
+        <style>
+            section.jumbotron.text-center{
+                background-color:yellowgreen;
+                background-position: center;
+                background-size: cover;
+                color: #fff;
+            }
+        </style>
+    @else
+        <style>
+            section.jumbotron.text-center{
+                background-image:url('{{ url('/images/'.$content->bannerHome) }}');
+                background-position: center;
+                background-size: cover;
+                color: #fff;
+            }
+        </style>
+    @endif
+
 @endsection
 
 {{-- Address Title | Above the browser --}}
