@@ -83,6 +83,15 @@
 @endsection
 
 @section('scriptPlace')
+    <!-- Add Class in mobile screen -->
+    <script type="text/javascript">
+        $(window).on('resize', function() {
+            if($(window).width() < 767) {
+                $('.table').toggleClass('table-responsive');
+            }
+        });
+    </script>
+
     <script type="text/javascript">
         $(document).ready(function() {
             $('#tablePelanggan').DataTable();

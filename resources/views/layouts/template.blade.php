@@ -131,7 +131,7 @@
 
         <!--brand name-->
         <a class="navbar-brand" href="#" data-jq-dropdown="#jq-dropdown-1">
-            <img class="pr-3 float-left" src="{{ asset('assets/img/logo-icon.png')}}" srcset="assets/img/logo-icon@2x.png 2x"  alt=""/>
+            <img class="pr-3 float-left" style="width:30%" src="{{ asset('images/logo-only-tiara-gypsum.png')}}" srcset="images/logo-only-tiara-gypsum@2x.png 2x"  alt=""/>
             <div class="float-left">
                 <div>Tiara </div>
                 <span class="page-direction f12 weight300">
@@ -200,6 +200,20 @@
                     </a>
                 </li>
 
+                <li class="nav-item {{ Request::routeIs('subscriber-list.*') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Data Subscriber">
+                    <a class="nav-link" href="{{ route('subscriber-list.index') }}">
+                        <i class="fa fa-users"></i>
+                        <span class="nav-link-text">Data Subscriber</span>
+                    </a>
+                </li>
+
+                <li class="nav-item {{ Request::routeIs('promo.*') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Data Promo">
+                    <a class="nav-link" href="{{ route('promo.index') }}">
+                        <i class="fa fa-ticket"></i>
+                        <span class="nav-link-text">Data Promo</span>
+                    </a>
+                </li>
+
                 <li class="nav-item {{ Request::routeIs('transaksi.*') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Data Transaksi">
                     <a class="nav-link" href="{{ route('transaksi.index') }}">
                         <i class="fa fa-money"></i>
@@ -213,13 +227,6 @@
                         <span class="nav-link-text">Pengaturan Konten</span>
                     </a>
                 </li>
-
-                {{-- <li class="nav-item {{ Request::routeIs('pelanggan.*') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Calendar">
-                    <a class="nav-link" href="{{ route('pelanggan.index') }}">
-                        <i class="fa fa-users"></i>
-                        <span class="nav-link-text">Data Pelanggan</span>
-                    </a>
-                </li> --}}
 
             </ul>
             <!--/header leftside links-->
@@ -286,7 +293,11 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle mr-lg-3" id="userNav" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <div class="user-thumb">
-                            <img class="rounded-circle" src="{{ asset('assets/img/avatar/avatar1.jpg')}}" alt=""/>
+                            @if (Auth::user()->foto_user)
+                            <img class="rounded-circle" src="{{ url('/images/'.Auth::user()->foto_user) }}" alt=""/>
+                            @else
+                                <img class="rounded-circle" src="{{ asset('assets/img/avatar/avatar1.jpg')}}" alt=""/>
+                            @endif
                         </div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userNav">

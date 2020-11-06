@@ -43,4 +43,12 @@ Route::group(['prefix' => 'admin'], function () {
 
     //Transaksi
     Route::resource('transaksi', 'TransaksiController');
+  
+    //Subscriber List
+    Route::get('subscriber-list','SubscriberListController@index')->name('subscriber-list.index');
+    Route::post('subscriber-list/send-email','SubscriberListController@SendEmail')->name('subscriber-list.send');
+
+    //promo
+    Route::resource('promo', 'PromoController');
+
 });

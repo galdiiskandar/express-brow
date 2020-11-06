@@ -25,7 +25,7 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="card-body- pt-3 pb-4">
+                        <div class="card-body pt-3 pb-4">
                             <a class="btn btn-primary" id="tambahButton" href="{{ route('proyek.create') }}"> <i class="fa fa-book"></i> Tambah Proyek </a>
                             <table class="table table-stripped" id="tableProyek">
                                 <thead>
@@ -84,6 +84,15 @@
 @endsection
 
 @section('scriptPlace')
+    <!-- Add Class in mobile screen -->
+    <script type="text/javascript">
+        $(window).on('resize', function() {
+            if($(window).width() < 767) {
+                $('.table').toggleClass('table-responsive');
+            }
+        });
+    </script>
+
     <script type="text/javascript">
         $(document).ready(function() {
             $('#tableProyek').DataTable();

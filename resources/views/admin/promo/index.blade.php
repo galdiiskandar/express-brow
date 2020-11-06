@@ -1,11 +1,11 @@
 @extends('layouts.template')
 
-@section('addressTitle','Data Admin')
+@section('addressTitle','Data Promo')
 
 @section('customStyle')
     <style>
         #tambahButton {
-            margin: 0 0 3% 3%;
+            margin: 0 0 3% 2%;
         }
     </style>
 @endsection
@@ -17,36 +17,30 @@
                     <div class="card card-shadow mb-4">
                         <div class="card-header border-0">
                             <div class="custom-title-wrap bar-primary">
-                                <div class="custom-title">Data Admin</div>
-                                @if (Session::has('success'))
-                                    <div class="alert alert-success successAlert">
-                                        <p>{{ Session::get('success') }}</p>
-                                    </div>
-                                @endif
+                                <div class="custom-title">Data Promo</div>
                             </div>
+                            @if (Session::has('success'))
+                                <div class="alert alert-success successAlert">
+                                    <p>{{ Session::get('success') }}</p>
+                                </div>
+                            @endif
                         </div>
                         <div class="card-body- pt-3 pb-4">
-                            <a class="btn btn-primary" id="tambahButton" href="{{ route('admin.create') }}"> <i class="fa fa-book"></i> Tambah Admin </a>
-                            <table class="table table-stripped" id="tableAdmin">
+                            <a class="btn btn-primary" id="tambahButton" href="{{ route('promo.create') }}"> <i class="fa fa-book"></i> Tambah Promo </a>
+                            <table class="table table-stripped" id="tablePromo">
                                 <thead>
-                                    <th>No. </th>
-                                    <th>Nama </th>
-                                    <th>No.Telp</th>
-                                    <th>Alamat</th>
+                                    <th>No.</th>
+                                    <th>Nama</th>
                                     <th>Aksi</th>
                                 </thead>
                                 <tbody>
-                                    @foreach ($admins as $adm => $admin)
+                                    @foreach ($promos as $prs => $promo)
                                         <tr>
-                                            <td>{{ ++$adm }}</td>
-                                            <td>{{ $admin->nama_user }}</td>
-                                            <td>{{ $admin->no_telp_user }}</td>
-                                            <td>{{ $admin->alamat }}</td>
+                                            <td>{{ ++$prs }}</td>
+                                            <td>{{ $promo->nama }}</td>
                                             <td>
-                                                <a class="btn btn-sm btn-info light-s" data-toggle="modal" data-id="{{ $admin->kode_user }}" data-target="#detailAdminModal"><span class="fa fa-eye"></span></a>
-                                                <a class="btn btn-sm btn-warning light-s" href="{{ route('admin.edit', $admin->kode_user) }}"><span class="fa fa-pencil"></span></a>
-                                                {{-- <a class="btn btn-sm btn-danger light-s"><span class="fa fa-trash"></span></a> --}}
-                                                <a class="btn btn-sm btn-primary light-s"><span class="fa fa-upload"></span></a>
+                                                <a class="btn btn-sm btn-info light-s" data-toggle="modal" data-id="{{ $promo->kode_promo }}" data-target="#detailPromoModal"><span class="fa fa-eye"></span></a>
+                                                <a class="btn btn-sm btn-warning light-s" href="{{ route('promo.edit', $promo->kode_promo) }}"><span class="fa fa-pencil"></span></a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -58,11 +52,13 @@
             </div>
         </div>
 
-        <div class="modal fade bd-example-modal-lg" id="detailAdminModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <!-- Init Modal -->
+
+        <div class="modal fade bd-example-modal-lg" id="detailPromoModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="myLargeModalLabel">Detail Admin</h4>
+                        <h4 class="modal-title" id="myLargeModalLabel">Detail Barang</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -90,22 +86,22 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#tableAdmin').DataTable();
+            $('#tablePromo').DataTable();
         });
     </script>
 
     <!-- Init Modal -->
     <script type="text/javascript">
         $(document).ready(function(){
-            $("#detailAdminModal").on('show.bs.modal', function(e){
+            $("#detailPromoModal").on('show.bs.modal', function(e){
 
-                var kodeUser = $(e.relatedTarget).data('id');
+                var kodePromo = $(e.relatedTarget).data('id');
 
-                $.get('/admin/admin/'+kodeUser, function(data){
+                $.get('/admin/promo/'+kodePromo, function(data){
                     $(".modal-body").html(data);
                 });
             });
         });
     </script>
-    <!-- End -->
+<!-- End -->
 @endsection
