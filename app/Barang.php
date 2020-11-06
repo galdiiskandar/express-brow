@@ -7,9 +7,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Barang extends Model
 {
+    protected $table = 'barangs';
 
     //define soft deletes
     use SoftDeletes;
+
+    protected $primaryKey = 'kode_produk';
+
+    public $incrementing = false;
 
     protected $fillable = [
         'kode_produk',
@@ -35,5 +40,9 @@ class Barang extends Model
             'gambar_produk' => '',
             'keterangan' => '',
         ];
+    }
+
+    public function detail_transaksis(){
+    	return $this->hasMany('App\DetailTransaksi');
     }
 }

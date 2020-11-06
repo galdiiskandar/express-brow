@@ -1,5 +1,5 @@
 @foreach ($dataProyek as $proyek)
-    <table class="table" name="detailBarang">
+    <table class="table" name="detailProyek">
         <tr>
             <th>Kode Proyek</th>
             <td>:</td>
@@ -14,6 +14,11 @@
             <th>Deskripsi Proyek</th>
             <td>:</td>
             <td>{{ $proyek->deskripsi_proyek}}</td>
+        </tr>
+        <tr>
+            <th>Status Proyek</th>
+            <td>:</td>
+            <td>{{ $proyek->status_proyek}}</td>
         </tr>
         <tr>
             <th>Gambar proyek </th>

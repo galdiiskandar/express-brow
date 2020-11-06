@@ -71,9 +71,13 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="statusPelanggan">Status Pelanggan</label>
-                            <input class="form-control" id="statusPelanggan" name="statusPelanggan" type="text"
-                                placeholder="Status Pelanggan" value="{{ old('pelanggan', $pelanggan->status) }}">
+                            <label for="statusPelanggan">Status</label>
+                            <div class="form-group">
+                                <label class="switch">
+                                    <input type="checkbox" id="statusPelanggan" name="statusPelanggan" value="1" {{ $pelanggan->status==1 ? "checked='checked'" : "" }}>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
                         </div>
 
                         <a class="btn btn btn-info" href="{{ route('pelanggan.index') }}">←</a>

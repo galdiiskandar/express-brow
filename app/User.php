@@ -10,6 +10,8 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    protected $table = 'users';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -64,5 +66,9 @@ class User extends Authenticatable
             'foto_user'  => '',
             'status'  => ''
         ];
+    }
+
+    public function transaksis(){
+    	return $this->hasMany('App\Transaksi');
     }
 }

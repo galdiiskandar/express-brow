@@ -23,7 +23,7 @@ Auth::routes();
 Route::get('/','WebsiteController@index');
 
 //Subsriber List
-Route::post('/subscribeList','WebsiteController@store');
+Route::post('/subscribeList','WebsiteController@store')->name('subscribelist.store');
 
 Route::group(['prefix' => 'admin'], function () {
     //Barang
@@ -41,6 +41,9 @@ Route::group(['prefix' => 'admin'], function () {
     //Admin
     Route::resource('admin', 'AdminController');
 
+    //Transaksi
+    Route::resource('transaksi', 'TransaksiController');
+  
     //Subscriber List
     Route::get('subscriber-list','SubscriberListController@index')->name('subscriber-list.index');
     Route::post('subscriber-list/send-email','SubscriberListController@SendEmail')->name('subscriber-list.send');
@@ -48,8 +51,4 @@ Route::group(['prefix' => 'admin'], function () {
     //promo
     Route::resource('promo', 'PromoController');
 
-});
-
-Route::get('staging/email-content',function(){
-    return view('email.mail');
 });

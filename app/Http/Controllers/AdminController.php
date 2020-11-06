@@ -54,6 +54,9 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
+        if($request->statusAdmin == null)
+            $request->statusAdmin = 0;
+
         $admin = new User();
 
         // dd($request->all());
@@ -66,9 +69,8 @@ class AdminController extends Controller
             'alamatAdmin' => 'required',
             'notelpuserAdmin' => 'required',
             'emailuserAdmin' => 'required',
-            'statusAdmin' => 'required',
+            'fotoAdmin'=> 'required|mimes:jpg,jpeg,png|max:4096',
         ]);
-
 
         $foto = $request->file('fotoAdmin');
 
@@ -95,7 +97,6 @@ class AdminController extends Controller
         }else{
             return redirect('admin/admin/create')->with('error','Data Gagal Disimpan');
         }
-
     }
 
     /**
@@ -139,6 +140,9 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if($request->statusAdmin == null)
+            $request->statusAdmin = 0;
+
         $admin = new User();
 
         $data = [

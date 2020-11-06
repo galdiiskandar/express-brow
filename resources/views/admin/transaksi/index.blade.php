@@ -1,6 +1,6 @@
 @extends('layouts.template')
 
-@section('addressTitle','Data Admin')
+@section('addressTitle','Data Transaksi')
 
 @section('customStyle')
     <style>
@@ -17,7 +17,7 @@
                     <div class="card card-shadow mb-4">
                         <div class="card-header border-0">
                             <div class="custom-title-wrap bar-primary">
-                                <div class="custom-title">Data Admin</div>
+                                <div class="custom-title">Data Transaksi</div>
                                 @if (Session::has('success'))
                                     <div class="alert alert-success successAlert">
                                         <p>{{ Session::get('success') }}</p>
@@ -26,26 +26,26 @@
                             </div>
                         </div>
                         <div class="card-body- pt-3 pb-4">
-                            <a class="btn btn-primary" id="tambahButton" href="{{ route('admin.create') }}"> <i class="fa fa-book"></i> Tambah Admin </a>
-                            <table class="table table-stripped" id="tableAdmin">
+                            <a class="btn btn-primary" id="tambahButton" href="{{ route('transaksi.create') }}"> <i class="fa fa-book"></i> Tambah Transaksi </a>
+                            <table class="table table-stripped" id="tableTransaksi">
                                 <thead>
-                                    <th>No. </th>
-                                    <th>Nama </th>
-                                    <th>No.Telp</th>
-                                    <th>Alamat</th>
+                                    <th>No.</th>
+                                    <th>Kode Transaksi</th>
+                                    <th>Kode Proyek</th>
+                                    <th>Tanggal</th>
                                     <th>Aksi</th>
                                 </thead>
                                 <tbody>
-                                    @foreach ($admins as $adm => $admin)
+                                    @foreach ($transaksis as $trk => $transaksi)
                                         <tr>
-                                            <td>{{ ++$adm }}</td>
-                                            <td>{{ $admin->nama_user }}</td>
-                                            <td>{{ $admin->no_telp_user }}</td>
-                                            <td>{{ $admin->alamat }}</td>
+                                            <td>{{ ++$trk }}</td>
+                                            <td>{{ $transaksi->kode_transaksi }}</td>
+                                            <td>{{ $transaksi->kode_proyek }}</td>
+                                            <td>{{ $transaksi->tanggal }}</td>
                                             <td>
-                                                <a class="btn btn-sm btn-info light-s" data-toggle="modal" data-id="{{ $admin->kode_user }}" data-target="#detailAdminModal"><span class="fa fa-eye"></span></a>
-                                                <a class="btn btn-sm btn-warning light-s" href="{{ route('admin.edit', $admin->kode_user) }}"><span class="fa fa-pencil"></span></a>
-                                                {{-- <a class="btn btn-sm btn-danger light-s"><span class="fa fa-trash"></span></a> --}}
+                                                <a class="btn btn-sm btn-info light-s" data-toggle="modal" data-id="{{ $transaksi->kode_transaksi }}" data-target="#detailTransaksiModal"><span class="fa fa-eye"></span></a>
+                                                <a class="btn btn-sm btn-warning light-s" href="{{ route('transaksi.edit', $transaksi->kode_transaksi) }}"><span class="fa fa-pencil"></span></a>
+                                                <a class="btn btn-sm btn-danger light-s"><span class="fa fa-trash"></span></a>
                                                 <a class="btn btn-sm btn-primary light-s"><span class="fa fa-upload"></span></a>
                                             </td>
                                         </tr>
@@ -58,11 +58,13 @@
             </div>
         </div>
 
-        <div class="modal fade bd-example-modal-lg" id="detailAdminModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <!-- Init Modal -->
+
+        <div class="modal fade bd-example-modal-lg" id="detailTransaksiModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="myLargeModalLabel">Detail Admin</h4>
+                        <h4 class="modal-title" id="myLargeModalLabel">Detail Transaksi</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -76,32 +78,24 @@
                 </div>
             </div>
         </div>
+
 @endsection
 
 @section('scriptPlace')
-    <!-- Add Class in mobile screen -->
-    <script type="text/javascript">
-        $(window).on('resize', function() {
-            if($(window).width() < 767) {
-                $('.table').toggleClass('table-responsive');
-            }
-        });
-    </script>
-
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#tableAdmin').DataTable();
+            $('#tableTransaksi').DataTable();
         });
     </script>
 
-    <!-- Init Modal -->
-    <script type="text/javascript">
+     <!-- Init Modal -->
+     <script type="text/javascript">
         $(document).ready(function(){
-            $("#detailAdminModal").on('show.bs.modal', function(e){
+            $("#detailTransaksiModal").on('show.bs.modal', function(e){
 
-                var kodeUser = $(e.relatedTarget).data('id');
+                var kodeTransaksi = $(e.relatedTarget).data('id');
 
-                $.get('/admin/admin/'+kodeUser, function(data){
+                $.get('/admin/transaksi/'+kodeTransaksi, function(data){
                     $(".modal-body").html(data);
                 });
             });

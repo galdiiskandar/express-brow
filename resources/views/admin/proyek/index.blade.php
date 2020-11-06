@@ -18,6 +18,11 @@
                         <div class="card-header border-0">
                             <div class="custom-title-wrap bar-primary">
                                 <div class="custom-title">Data Proyek</div>
+                                @if (Session::has('success'))
+                                    <div class="alert alert-success successAlert">
+                                        <p>{{ Session::get('success') }}</p>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                         <div class="card-body pt-3 pb-4">
@@ -29,6 +34,7 @@
                                     <th>Nama Proyek</th>
                                     <th>Deskripsi Proyek</th>
                                     <th>Status Proyek</th>
+                                    <th>Aksi</th>
                                 </thead>
                                 <tbody>
                                     @foreach ($proyeks as $pry => $proyek)
@@ -37,6 +43,7 @@
                                             <td>{{ $proyek->kode_proyek }}</td>
                                             <td>{{ $proyek->nama_proyek }}</td>
                                             <td>{{ $proyek->deskripsi_proyek }}</td>
+                                            <td>{{ $proyek->status_proyek }}</td>
                                             <td>
                                                 <a class="btn btn-sm btn-info light-s" data-toggle="modal" data-id="{{ $proyek->kode_proyek }}" data-target="#detailProyekModal"><span class="fa fa-eye"></span></a>
                                                 <a class="btn btn-sm btn-warning light-s" href="{{ route('proyek.edit', $proyek->kode_proyek) }}"><span class="fa fa-pencil"></span></a>

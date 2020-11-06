@@ -7,8 +7,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Pelanggan extends Model
 {
+    protected $table = 'pelanggans';
+
     //define soft deletes
     use SoftDeletes;
+
+    protected $primaryKey = 'kode_pelanggan';
+
+    public $incrementing = false;
 
     protected $fillable = [
         'kode_pelanggan',
@@ -36,5 +42,9 @@ class Pelanggan extends Model
             'keterangan_pelanggan'  => '',
             'status' => ''
         ];
+    }
+
+    public function transaksis(){
+    	return $this->hasMany('App\Transaksi');
     }
 }

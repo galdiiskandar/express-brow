@@ -59,9 +59,13 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="statusProyek">Status Proyek</label>
-                                <input class="form-control" id="statusProyek" name="statusProyek"
-                                    placeholder="Masukan Nama Proyek" value="{{ old('proyek', $proyek->status_proyek) }}">
+                                <label for="statusProyek">Status</label>
+                                <div class="form-group">
+                                    <label class="switch">
+                                        <input type="checkbox" id="statusProyek" name="statusProyek" value="1" {{ $proyek->status_proyek==1 ? "checked='checked'" : "" }}>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
                             </div>
 
                             <button class="btn btn-secondary" type="reset">Ulang</button>

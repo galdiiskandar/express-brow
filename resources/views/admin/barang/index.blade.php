@@ -5,7 +5,7 @@
 @section('customStyle')
     <style>
         #tambahButton {
-            margin: 0 0 3% 2%;
+            margin: 0 0 3% 3%;
         }
     </style>
 @endsection
