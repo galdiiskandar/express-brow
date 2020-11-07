@@ -40,6 +40,14 @@
         .step.finish {
             background-color: #4CAF50;
         }
+
+        input#totalTransaksi:focus {
+            outline: none;
+        }
+        input.z:focus {
+            outline: none;
+        }
+
     </style>
 @endsection
 
@@ -116,7 +124,7 @@
                                         <div class="col">
                                             <label for="kodeProduk">Produk</label>
                                             <select class="form-control select2 y" style="width: 100%;" name="kodeProduk[]">
-                                                <option value="">Select Produk</option>
+                                                <option></option>
                                                 @foreach($produk as $produk)
                                                     <option value="{{$produk->kode_produk}}">{{$produk->nama_produk}}</option>
                                                 @endforeach
@@ -128,7 +136,7 @@
                                         </div>
                                         <div class="col-md-2">
                                             <label for="hargaProduk">Harga</label>
-                                            <input type="number" readonly class="form-control-plaintext" name="hargaProduk[]">
+                                            <input type="number" readonly class="form-control-plaintext z" name="hargaProduk[]">
                                         </div>
                                     </div>
                                 </div>
@@ -174,8 +182,12 @@
 
 @section('scriptPlace')
 <script type="text/javascript">
-    $('.select2').select2()
-    $('#submitBtn').hide()
+    $('.select2').select2({
+        placeholder: "Pilih Satu",
+        allowClear: true
+    });
+
+    $('#submitBtn').hide();
     $('.remove').hide();
     $('input[name="qtyProduk[]"]').eq(0).val(1);
     $('input[name="hargaProduk[]"]').eq(0).val(0);
@@ -223,15 +235,18 @@
 
         totalPrice();
 
-        $('option').prop('disabled', false);
+        // start by setting everything to enabled
+        $('select[name*="kodeProduk"] option').prop('disabled',false);
 
-        $('.y').each(function() {
-            var val = this.value;
-            $('.y').not(this).find('option').filter(function() {
-            return this.value === val;
-            }).prop('disabled', true);
+        // loop each select and set the selected value to disabled in all other selects
+        $('select[name*="kodeProduk"]').each(function(){
+            var $this = $(this);
+            $('select[name*="kodeProduk"]').not($this).find('option').each(function(){
+            if($(this).attr('value') == $this.val()){
+                $(this).prop('disabled',true);
+            }
+            });
         });
-
     });
 
     $(document).ready(function(){
@@ -251,7 +266,7 @@
                 '<div class="col">'+
                 '<label for="kodeProduk">Produk</label>'+
                 '<select class="form-control select2 y" style="width: 100%;" name="kodeProduk[]">'+
-                '<option value="">Select Produk</option>'+
+                '<option></option>'+
                 '@foreach($produk1 as $produk)'+
                 '<option value="{{$produk->kode_produk}}">{{$produk->nama_produk}}</option>'+
                 '@endforeach'+
@@ -263,21 +278,29 @@
                 '</div>'+
                 '<div class="col-md-2">'+
                 '<label for="hargaProduk">Harga</label>'+
-                '<input type="number" readonly class="form-control-plaintext" name="hargaProduk[]" value="">'+
+                '<input type="number" readonly class="form-control-plaintext z" name="hargaProduk[]" value="">'+
                 '</div>'+
                 '</div>'+
                 '</div>'
             );
-
-            $('.select2').select2()
             $('.remove').show();
-            $('option').prop('disabled', false);
 
-            $('.y').each(function() {
-                var val = this.value;
-                $('.y').not(this).find('option').filter(function() {
-                return this.value === val;
-                }).prop('disabled', true);
+            $('.select2').select2({
+                placeholder: "Pilih Satu",
+                allowClear: true
+            });
+
+            // start by setting everything to enabled
+            $('select[name*="kodeProduk"] option').prop('disabled',false);
+
+            // loop each select and set the selected value to disabled in all other selects
+            $('select[name*="kodeProduk"]').each(function(){
+                var $this = $(this);
+                $('select[name*="kodeProduk"]').not($this).find('option').each(function(){
+                if($(this).attr('value') == $this.val()){
+                    $(this).prop('disabled',true);
+                }
+                });
             });
 
             var r = $('input[name="qtyProduk[]"]').length
@@ -286,17 +309,40 @@
                 $('input[name="hargaProduk[]"]').eq(r-1).val(0);
             }
 
+            var countProduk = [
+                @foreach($produk1 as $produk)
+                [ "{{$produk->kode_produk}}"],
+                @endforeach
+            ];
+
+            if(r >= countProduk.length)
+            {
+                $('.add').hide();
+            }
             totalPrice();
+            console.log(r,countProduk)
+
         });
 
         $(document).on('click', '.remove',function(){
-            $('.listProduk2:last-child').remove();
+            var val = $('.listProduk2:last-child').remove().find('select').val();
+            $(".y option[value='" + val + "']").attr("disabled", false);
             var r = $('input[name="qtyProduk[]"]').length
             if(r < 2)
             {
                 $('.remove').hide();
             }
             totalPrice();
+            var countProduk = [
+                @foreach($produk1 as $produk)
+                [ "{{$produk->kode_produk}}"],
+                @endforeach
+            ];
+
+            if(r < countProduk.length)
+            {
+                $('.add').show();
+            }
         });
     });
 
