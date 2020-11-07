@@ -44,10 +44,10 @@
         input#totalTransaksi:focus {
             outline: none;
         }
+
         input.z:focus {
             outline: none;
         }
-
     </style>
 @endsection
 

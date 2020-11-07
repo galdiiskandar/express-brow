@@ -235,62 +235,6 @@
             <ul class="navbar-nav header-links ml-auto hide-arrow">
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle mr-lg-3" id="alertsDropdown" href="#" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        <i class="vl_bell"></i>
-                        <span class="d-lg-none">Notification
-                            <span class="badge badge-pill badge-warning">5 New</span>
-                        </span>
-                        <div class="notification-alarm">
-                            <span class="wave wave-warning"></span>
-                            <span class="dot bg-warning"></span>
-                        </div>
-                    </a>
-
-                    <div class="dropdown-menu dropdown-menu-right header-right-dropdown-width pb-0" aria-labelledby="alertsDropdown">
-                        <h6 class="dropdown-header weight500">Notification</h6>
-
-                        <div class="dropdown-divider mb-0"></div>
-                        <a class="dropdown-item border-bottom" href="#">
-                            <span class="text-primary">
-                            <span class="weight500">
-                                <i class="vl_bell weight600 pr-2"></i>Weekly Update</span>
-                            </span>
-                            <span class="small float-right text-muted">03:14 AM</span>
-
-                            <div class="dropdown-message f12">
-                                This week project update report generated. All team members are requested to check the updates
-                            </div>
-                        </a>
-
-                        <a class="dropdown-item border-bottom" href="#">
-                            <span class="text-danger">
-                            <span class="weight500">
-                                <i class="vl_Download-circle weight600 pr-2"></i>Server Error</span>
-                            </span>
-                            <span class="small float-right text-muted">10:34 AM</span>
-
-                            <div class="dropdown-message f12">
-                                Unexpectedly server response stop. Responsible members are requested to fix it soon
-                            </div>
-                        </a>
-
-                        <a class="dropdown-item border-bottom" href="#">
-                            <span class="text-success">
-                            <span class="weight500">
-                                <i class="vl_screen weight600 pr-2"></i>Monthly Meeting</span>
-                            </span>
-                            <span class="small float-right text-muted">12:30 AM</span>
-
-                            <div class="dropdown-message f12">
-                                Our monthly meeting will be held on tomorrow sharp 12:30. All members are requested to attend this meeting.
-                            </div>
-                        </a>
-
-                        <a class="dropdown-item small" href="#">View all notification</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle mr-lg-3" id="userNav" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <div class="user-thumb">
                             @if (Auth::user()->foto_user)
@@ -301,11 +245,6 @@
                         </div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userNav">
-                        <a class="dropdown-item" href="#">My Profile</a>
-                        <a class="dropdown-item" href="#">Account Settings</a>
-                        <a class="dropdown-item" href="#">Inbox <span class="badge badge-primary">3</span></a>
-                        <a class="dropdown-item" href="#">Message <span class="badge badge-success">5</span></a>
-                        <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">Sign Out</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
