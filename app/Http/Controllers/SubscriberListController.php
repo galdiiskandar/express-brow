@@ -58,7 +58,12 @@ class SubscriberListController extends Controller
 
         for($y=0;$y<$x;$y++){
 
-            $separateEmail = $emails[$y];
+            $reSelect = DB::table('subscribe_list')
+                        ->select('email')
+                        ->where('id',$request->idSubscribe[$y])
+                        ->first();
+
+            $separateEmail = $reSelect->email;
 
             try{
 
@@ -76,7 +81,7 @@ class SubscriberListController extends Controller
 
         }
 
-        return redirect('admin/subscriber-list')->with('alert-success','Berhasil Kirim Email');
+        return redirect('admin/subscriber-list')->with('success','Berhasil Kirim Email');
     }
 
 }

@@ -22,6 +22,11 @@
                         <div class="card-header border-0">
                             <div class="custom-title-wrap bar-primary">
                                 <div class="custom-title">Data Subscriber</div>
+                                @if (Session::has('success'))
+                                    <div class="alert alert-success successAlert">
+                                        <p>{{ Session::get('success') }}</p>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                         <form method="POST" action="{{ route('subscriber-list.send') }}">
