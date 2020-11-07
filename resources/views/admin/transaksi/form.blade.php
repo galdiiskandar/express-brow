@@ -76,10 +76,20 @@
                                         placeholder="Masukan Kode Transaksi" value="{{ old('transaksi', $transaksi->kode_transaksi) }}" {{ $transaksi->kode_transaksi ? "readonly=true" : "" }}>
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group" style="margin-bottom: 0;">
+                                    <label for="statusPelanggan">Member</label>
+                                    <div class="form-group" style="margin-bottom: 0;">
+                                        <label class="switch">
+                                            <input type="checkbox" id="statusPelanggan" name="statusPelanggan" value="1">
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group listMember">
                                     <label for="kodePelanggan">Nama Pelanggan</label>
                                     <select class="form-control select2" style="width: 100%;" name="kodePelanggan">
-                                        @foreach($pelanggan as $pelanggan)
+                                        @foreach($pelanggan->where('kode_pelanggan','!=','CS0000') as $pelanggan)
                                             <option value="{{$pelanggan->kode_pelanggan}}">{{$pelanggan->nama_pelanggan}}</option>
                                         @endforeach
                                     </select>
@@ -106,6 +116,7 @@
                                         <div class="col">
                                             <label for="kodeProduk">Produk</label>
                                             <select class="form-control select2 y" style="width: 100%;" name="kodeProduk[]">
+                                                <option value="">Select Produk</option>
                                                 @foreach($produk as $produk)
                                                     <option value="{{$produk->kode_produk}}">{{$produk->nama_produk}}</option>
                                                 @endforeach
@@ -117,7 +128,7 @@
                                         </div>
                                         <div class="col-md-2">
                                             <label for="hargaProduk">Harga</label>
-                                            <input type="number" class="form-control" placeholder="harga" name="hargaProduk[]">
+                                            <input type="number" readonly class="form-control-plaintext" name="hargaProduk[]">
                                         </div>
                                     </div>
                                 </div>
@@ -125,12 +136,13 @@
                                 <div style="overflow:auto;">
                                     <div style="float:right;">
                                         <button type="button" class="btn btn-primary add">Add</button>
+                                        <button type="button" class="btn btn-danger remove">Remove</button>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="totalTransaksi">Total</label>
-                                    <input type="number" class="form-control" id="totalTransaksi" name="totalTransaksi" value="{{ old('transaksi', $transaksi->total) }}">
+                                    <input type="number" readonly class="form-control-plaintext" id="totalTransaksi" name="totalTransaksi">
                                 </div>
 
                                 <div class="form-group">
@@ -151,8 +163,6 @@
                                 <span class="step" style="col"></span>
                                 <span class="step"></span>
                             </div>
-                            {{-- <button class="btn btn-secondary" type="reset">Ulang</button>
-                            <button class="btn btn-success btn-submit" type="submit">Simpan</button> --}}
                         </form>
                         <div id="box"></div>
                 </div>
@@ -164,24 +174,35 @@
 
 @section('scriptPlace')
 <script type="text/javascript">
-
     $('.select2').select2()
-
-        // $(document).on('change', '.q', function() {
-        //     var selectQTY = $('select[name="qtyProduk[]"]');
-        //     var index = selectQTY.index( this );
-
-        //     var qty = $('input[name="qtyProduk[]"]').eq(index).val()
-        //     var price = $('input[name="hargaProduk[]"]').eq(index).val()
-
-        //     total[index] = qty * price;
-        // });
+    $('#submitBtn').hide()
+    $('.remove').hide();
+    $('input[name="qtyProduk[]"]').eq(0).val(1);
+    $('input[name="hargaProduk[]"]').eq(0).val(0);
 
 
-        $(document).on('change select', '.y', function() {
-            var selectKode = $('select[name="kodeProduk[]"]');
-            var index = selectKode.index( this );
-            var kodeProduk = $('select[name="kodeProduk[]"]').eq(index).val();
+    function totalPrice(){
+        var i = 0
+        var total = 0
+        var r = $('input[name="qtyProduk[]"]').length
+
+        for(i=0; i<r; i++){
+            var harga = $('input[name="hargaProduk[]"]').eq(i).val()
+            var qty = $('input[name="qtyProduk[]"]').eq(i).val()
+            total += parseFloat(harga) * parseFloat(qty)
+        }
+        $('input[name="totalTransaksi"]').val(total)
+    }
+
+    $(document).on('change input', '.q', function() {
+        totalPrice();
+    });
+
+    $(document).on('change select', '.y', function() {
+        var selectKode = $('select[name="kodeProduk[]"]');
+        var index = selectKode.index( this );
+        var kodeProduk = $('select[name="kodeProduk[]"]').eq(index).val();
+        if(kodeProduk != ""){
             var harga = [
                 @foreach($produk1 as $produk)
                 [ "{{$produk->kode_produk}}", "{{$produk->harga}}" ],
@@ -192,19 +213,45 @@
             } );
 
             $('input[name="hargaProduk[]"]').eq(index).val(arr[0][1]);
+        }else{
+            $('input[name="qtyProduk[]"]').eq(index).val(1);
+            $('input[name="hargaProduk[]"]').eq(index).val(0);
+        }
+        if($('input[name="qtyProduk[]"]').eq(index).val() == ""){
+            $('input[name="qtyProduk[]"]').eq(index).val(1);
+        }
 
-            if($('input[name="qtyProduk[]"]').eq(index).val() == ""){
-                $('input[name="qtyProduk[]"]').eq(index).val(1);
-            }
+        totalPrice();
+
+        $('option').prop('disabled', false);
+
+        $('.y').each(function() {
+            var val = this.value;
+            $('.y').not(this).find('option').filter(function() {
+            return this.value === val;
+            }).prop('disabled', true);
+        });
+
+    });
+
+    $(document).ready(function(){
+        $('.listMember').hide();
+
+        $('#statusPelanggan').change(function(){
+            if(this.checked)
+                $('.listMember').show();
+            else
+                $('.listMember').hide();
         });
 
         $('.add').click(function() {
             $(".listProduk").append(
-                '<div class="listProduk2">'+
+                '<div class="listProduk2" id="listProduk2">'+
                 '<div class="form-row form-group">'+
                 '<div class="col">'+
                 '<label for="kodeProduk">Produk</label>'+
                 '<select class="form-control select2 y" style="width: 100%;" name="kodeProduk[]">'+
+                '<option value="">Select Produk</option>'+
                 '@foreach($produk1 as $produk)'+
                 '<option value="{{$produk->kode_produk}}">{{$produk->nama_produk}}</option>'+
                 '@endforeach'+
@@ -216,73 +263,100 @@
                 '</div>'+
                 '<div class="col-md-2">'+
                 '<label for="hargaProduk">Harga</label>'+
-                '<input type="number" class="form-control" placeholder="harga" name="hargaProduk[]" value="">'+
+                '<input type="number" readonly class="form-control-plaintext" name="hargaProduk[]" value="">'+
                 '</div>'+
                 '</div>'+
                 '</div>'
             );
+
             $('.select2').select2()
+            $('.remove').show();
+            $('option').prop('disabled', false);
+
+            $('.y').each(function() {
+                var val = this.value;
+                $('.y').not(this).find('option').filter(function() {
+                return this.value === val;
+                }).prop('disabled', true);
+            });
+
+            var r = $('input[name="qtyProduk[]"]').length
+            if($('input[name="qtyProduk[]"]').eq(r-1).val() == ""){
+                $('input[name="qtyProduk[]"]').eq(r-1).val(1);
+                $('input[name="hargaProduk[]"]').eq(r-1).val(0);
+            }
+
+            totalPrice();
         });
 
-    $('#submitBtn').hide()
+        $(document).on('click', '.remove',function(){
+            $('.listProduk2:last-child').remove();
+            var r = $('input[name="qtyProduk[]"]').length
+            if(r < 2)
+            {
+                $('.remove').hide();
+            }
+            totalPrice();
+        });
+    });
 
     var currentTab = 0; // Current tab is set to be the first tab (0)
     showTab(currentTab); // Display the current tab
 
     function showTab(n) {
-    // This function will display the specified tab of the form ...
-    var x = document.getElementsByClassName("tab");
-    x[n].style.display = "block";
-    // ... and fix the Previous/Next buttons:
-    if (n == 0) {
-        document.getElementById("prevBtn").style.display = "none";
-    } else {
-        document.getElementById("prevBtn").style.display = "inline";
-    }
-    if (n == (x.length - 1)) {
-        document.getElementById("nextBtn").style.display = "none";
-        $('#submitBtn').show()
-    } else {
-        document.getElementById("nextBtn").style.display = "inline";
-        $('#submitBtn').hide()
-        document.getElementById("nextBtn").innerHTML = "Next";
-    }
-    // ... and run a function that displays the correct step indicator:
-    fixStepIndicator(n)
+        // This function will display the specified tab of the form ...
+        var x = document.getElementsByClassName("tab");
+        x[n].style.display = "block";
+        // ... and fix the Previous/Next buttons:
+        if (n == 0) {
+            document.getElementById("prevBtn").style.display = "none";
+        } else {
+            document.getElementById("prevBtn").style.display = "inline";
+        }
+        if (n == (x.length - 1)) {
+            document.getElementById("nextBtn").style.display = "none";
+            $('#submitBtn').show()
+        } else {
+            document.getElementById("nextBtn").style.display = "inline";
+            $('#submitBtn').hide()
+            document.getElementById("nextBtn").innerHTML = "Next";
+        }
+        // ... and run a function that displays the correct step indicator:
+        fixStepIndicator(n)
     }
 
     function nextPrev(n) {
-    // This function will figure out which tab to display
-    var x = document.getElementsByClassName("tab");
-    // Exit the function if any field in the current tab is invalid:
-    if (n == 1 && !validateForm()) return false;
-    // Hide the current tab:
-    x[currentTab].style.display = "none";
-    // Increase or decrease the current tab by 1:
-    currentTab = currentTab + n;
-    // if you have reached the end of the form... :
-    if (currentTab >= x.length) {
-        //...the form gets submitted:
-        document.getElementById("regForm").submit();
-        return false;
-    }
-    // Otherwise, display the correct tab:
-    showTab(currentTab);
+        // This function will figure out which tab to display
+        var x = document.getElementsByClassName("tab");
+        // Exit the function if any field in the current tab is invalid:
+        if (n == 1 && !validateForm()) return false;
+        // Hide the current tab:
+        x[currentTab].style.display = "none";
+        // Increase or decrease the current tab by 1:
+        currentTab = currentTab + n;
+        // if you have reached the end of the form... :
+        if (currentTab >= x.length) {
+            //...the form gets submitted:
+            document.getElementById("regForm").submit();
+            return false;
+        }
+        // Otherwise, display the correct tab:
+        showTab(currentTab);
     }
 
     function validateForm() {
-    // This function deals with validation of the form fields
-    var x, y, i, valid = true;
-    x = document.getElementsByClassName("tab");
-    y = x[currentTab].getElementsByTagName("input");
-    // A loop that checks every input field in the current tab:
-    for (i = 0; i < y.length; i++) {
-        // If a field is empty...
-        if (y[i].value == "") {
-        // add an "invalid" class to the field:
-        y[i].className += " invalid";
-        // and set the current valid status to false:
-        valid = false;
+        // This function deals with validation of the form fields
+        var x, y, i, valid = true;
+        x = document.getElementsByClassName("tab");
+        y = x[currentTab].getElementsByTagName("input");
+        // A loop that checks every input field in the current tab:
+        for (i = 0; i < y.length; i++) {
+            // If a field is empty...
+            if (y[i].value == "") {
+            // add an "invalid" class to the field:
+            y[i].className += " invalid";
+            // and set the current valid status to false:
+            valid = false;
         }
     }
     // If the valid status is true, mark the step as finished and valid:
@@ -290,14 +364,13 @@
     }
 
     function fixStepIndicator(n) {
-    // This function removes the "active" class of all steps...
-    var i, x = document.getElementsByClassName("step");
-    for (i = 0; i < x.length; i++) {
-        x[i].className = x[i].className.replace(" active", "");
+        // This function removes the "active" class of all steps...
+        var i, x = document.getElementsByClassName("step");
+        for (i = 0; i < x.length; i++) {
+            x[i].className = x[i].className.replace(" active", "");
+        }
+        //... and adds the "active" class to the current step:
+        x[n].className += " active";
     }
-    //... and adds the "active" class to the current step:
-    x[n].className += " active";
-}
-
 </script>
 @endsection

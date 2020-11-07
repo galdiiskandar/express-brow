@@ -69,11 +69,13 @@ class TransaksiController extends Controller
      */
     public function store(Request $request)
     {
+        if($request->statusPelanggan == null)
+            $request->kodePelanggan = 'CS0000';
 
-      $r = count($request->qtyProduk);
+        $r = count($request->qtyProduk);
 
-      $transaksi = new Transaksi();
-      $detailtransaksi = new DetailTransaksi();
+        $transaksi = new Transaksi();
+        $detailtransaksi = new DetailTransaksi();
 
         // dd($request->all());
 
