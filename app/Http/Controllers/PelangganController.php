@@ -53,9 +53,6 @@ class PelangganController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->statusPelanggan == null)
-            $request->statusPelanggan = 0;
-
         $pelanggan = new Pelanggan();
 
         // dd($request->all());
@@ -66,8 +63,7 @@ class PelangganController extends Controller
             'emailPelanggan' => 'required',
             'telpPelanggan' => 'required',
             'alamatPelanggan' => 'required',
-            'keteranganPelanggan' => 'required',
-            'statusPelanggan' => 'required'
+            'keteranganPelanggan' => 'required'
         ]);
 
         $data = [
@@ -76,8 +72,7 @@ class PelangganController extends Controller
             'alamat_email' => $request->emailPelanggan,
             'no_telp_pelanggan' => $request->telpPelanggan,
             'alamat_pelanggan' => $request->alamatPelanggan,
-            'keterangan_pelanggan' => $request->keteranganPelanggan,
-            'status' => $request->statusPelanggan
+            'keterangan_pelanggan' => $request->keteranganPelanggan
         ];
 
         $insertData = $pelanggan::create($data);
@@ -130,10 +125,6 @@ class PelangganController extends Controller
      */
     public function update(Request $request)
     {
-
-        if($request->statusPelanggan == null)
-            $request->statusPelanggan = 0;
-
         $pelanggan = new Pelanggan();
 
         $data = [
@@ -142,8 +133,7 @@ class PelangganController extends Controller
             'alamat_email' => $request->emailPelanggan,
             'no_telp_pelanggan' => $request->telpPelanggan,
             'alamat_pelanggan' => $request->alamatPelanggan,
-            'keterangan_pelanggan' => $request->keteranganPelanggan,
-            'status' => $request->statusPelanggan
+            'keterangan_pelanggan' => $request->keteranganPelanggan
         ];
 
         $updatePelanggan = $pelanggan::where('kode_pelanggan', $request->kodePelanggan)

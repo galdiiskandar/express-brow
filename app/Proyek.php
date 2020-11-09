@@ -37,8 +37,4 @@ class Proyek extends Model
             'gambar_proyek' => ''
         ];
     }
-
-    public function transaksis(){
-    	return $this->hasMany('App\Transaksi');
-    }
 }

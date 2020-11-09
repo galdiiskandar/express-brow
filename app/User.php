@@ -30,8 +30,7 @@ class User extends Authenticatable
         'alamat',
         'no_telp_user',
         'email_user',
-        'foto_user',
-        'status'
+        'foto_user'
     ];
 
     /**
@@ -63,8 +62,7 @@ class User extends Authenticatable
             'alamat'  => '',
             'no_telp_user'  => '',
             'email_user'  => '',
-            'foto_user'  => '',
-            'status'  => ''
+            'foto_user'  => ''
         ];
     }
 

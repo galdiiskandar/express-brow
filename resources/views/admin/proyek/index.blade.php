@@ -47,8 +47,6 @@
                                             <td>
                                                 <a class="btn btn-sm btn-info light-s" data-toggle="modal" data-id="{{ $proyek->kode_proyek }}" data-target="#detailProyekModal"><span class="fa fa-eye"></span></a>
                                                 <a class="btn btn-sm btn-warning light-s" href="{{ route('proyek.edit', $proyek->kode_proyek) }}"><span class="fa fa-pencil"></span></a>
-                                                <a class="btn btn-sm btn-danger light-s"><span class="fa fa-trash"></span></a>
-                                                <a class="btn btn-sm btn-primary light-s"><span class="fa fa-upload"></span></a>
                                             </td>
                                         </tr>
                                     @endforeach

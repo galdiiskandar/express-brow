@@ -53,16 +53,11 @@ class ProyekController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->statusProyek == null)
-            $request->statusProyek = 0;
-
         $proyek = new Proyek();
-
-        // dd($request->all());
 
         $validate = $request->validate([
             'gambarProyek'=> 'mimes:jpg,jpeg,png|max:4096',
-            'statusProyek' => 'required|numeric',
+            'statusProyek' => 'required',
             'kodeProyek' => 'required',
             'namaProyek' => 'required',
             'deskripsiProyek' => 'required',
@@ -135,9 +130,6 @@ class ProyekController extends Controller
      */
     public function update(Request $request)
     {
-        if($request->statusProyek == null)
-            $request->statusProyek = 0;
-
         $proyek = new Proyek();
 
         if($request->gambarProyek == null){
@@ -179,9 +171,7 @@ class ProyekController extends Controller
             }else{
                 return redirect('admin/proyek/'.$request->kodeProyek.'/edit')->with('error','Data Gagal Diperbaharui');
             }
-
         }
-
     }
 
     /**

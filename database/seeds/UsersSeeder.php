@@ -20,8 +20,7 @@ class UsersSeeder extends Seeder
             'nama_user' => 'Ayu Frida',
             'alamat' => 'Gianyar',
             'no_telp_user' => '081234567890',
-            'email_user' => 'ayufrida@gmail.com',
-            'status' => '1'
+            'email_user' => 'ayufrida@gmail.com'
         ]);
     }
 }

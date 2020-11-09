@@ -31,7 +31,6 @@
                                 <thead>
                                     <th>No.</th>
                                     <th>Kode Transaksi</th>
-                                    <th>Kode Proyek</th>
                                     <th>Tanggal</th>
                                     <th>Aksi</th>
                                 </thead>
@@ -40,13 +39,10 @@
                                         <tr>
                                             <td>{{ ++$trk }}</td>
                                             <td>{{ $transaksi->kode_transaksi }}</td>
-                                            <td>{{ $transaksi->kode_proyek }}</td>
                                             <td>{{ $transaksi->tanggal }}</td>
                                             <td>
                                                 <a class="btn btn-sm btn-info light-s" data-toggle="modal" data-id="{{ $transaksi->kode_transaksi }}" data-target="#detailTransaksiModal"><span class="fa fa-eye"></span></a>
                                                 <a class="btn btn-sm btn-warning light-s" href="{{ route('transaksi.edit', $transaksi->kode_transaksi) }}"><span class="fa fa-pencil"></span></a>
-                                                <a class="btn btn-sm btn-danger light-s"><span class="fa fa-trash"></span></a>
-                                                <a class="btn btn-sm btn-primary light-s"><span class="fa fa-upload"></span></a>
                                             </td>
                                         </tr>
                                     @endforeach

@@ -54,12 +54,7 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->statusAdmin == null)
-            $request->statusAdmin = 0;
-
         $admin = new User();
-
-        // dd($request->all());
 
         $validate = $request->validate([
             'kodeAdmin' => 'required',
@@ -84,8 +79,7 @@ class AdminController extends Controller
             'alamat' => $request->alamatAdmin,
             'no_telp_user' => $request->notelpuserAdmin,
             'email_user' => $request->emailuserAdmin,
-            'foto_user' => $fotoName,
-            'status' => $request->statusAdmin
+            'foto_user' => $fotoName
         ];
 
         $insertData = $admin::create($data);
@@ -140,13 +134,22 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if($request->statusAdmin == null)
-            $request->statusAdmin = 0;
 
         $admin = new User();
 
+        $foto = $request->file('fotoAdmin');
+
+        $fotoName = time().'_'.$request->namauserAdmin.'_'.'.'.$request->fotoAdmin->extension();
+
         $data = [
-            'status' => $request->statusAdmin
+            'kode_user' => $request->kodeAdmin,
+            'username' => $request->usernameAdmin,
+            'password' => Hash::make($request->passwordAdmin),
+            'nama_user' => $request->namauserAdmin,
+            'alamat' => $request->alamatAdmin,
+            'no_telp_user' => $request->notelpuserAdmin,
+            'email_user' => $request->emailuserAdmin,
+            'foto_user' => $fotoName
         ];
 
         $updateAdmin = $admin::where('kode_user', $request->kodeAdmin)

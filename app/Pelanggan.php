@@ -22,8 +22,7 @@ class Pelanggan extends Model
         'alamat_email',
         'no_telp_pelanggan',
         'alamat_pelanggan',
-        'keterangan_pelanggan',
-        'status'
+        'keterangan_pelanggan'
     ];
 
     protected $guarded = [
@@ -39,12 +38,7 @@ class Pelanggan extends Model
             'alamat_email'  => '',
             'no_telp_pelanggan'  => '',
             'alamat_pelanggan'  => '',
-            'keterangan_pelanggan'  => '',
-            'status' => ''
+            'keterangan_pelanggan'  => ''
         ];
-    }
-
-    public function transaksis(){
-    	return $this->hasMany('App\Transaksi');
     }
 }

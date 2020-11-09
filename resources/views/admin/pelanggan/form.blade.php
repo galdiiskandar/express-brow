@@ -21,13 +21,6 @@
                     @endif
                 </div>
                 <div class="card-body">
-
-                    {{-- @if ($barang->kode_produk == "")
-                        SAT
-                    @else
-                        asdasd
-                    @endif --}}
-
                     @if ($pelanggan->kode_pelanggan == "")
                         <form method="POST" action="{{ route('pelanggan.store') }}" enctype="multipart/form-data">
                     @else
@@ -68,16 +61,6 @@
                         <div class="form-group">
                             <label for="keteranganPelanggan">Keterangan Pelanggan</label>
                             <textarea class="form-control" name="keteranganPelanggan">{{ $pelanggan->keterangan_pelanggan }}</textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="statusPelanggan">Status</label>
-                            <div class="form-group">
-                                <label class="switch">
-                                    <input type="checkbox" id="statusPelanggan" name="statusPelanggan" value="1" {{ $pelanggan->status==1 ? "checked='checked'" : "" }}>
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
                         </div>
 
                         <a class="btn btn btn-info" href="{{ route('pelanggan.index') }}">←</a>

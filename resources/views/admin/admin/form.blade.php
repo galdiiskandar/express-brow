@@ -45,7 +45,7 @@
                         <div class="form-group">
                             <label for="usernameAdmin">Username</label>
                             <input class="form-control" id="usernameAdmin" name="usernameAdmin" type="text"
-                                placeholder="Username" value="{{ old('admin', $admin->username) }}" {{ $admin->username ? "readonly=true" : "" }}>
+                                placeholder="Username" value="{{ old('admin', $admin->username) }}">
                         </div>
 
                         @if($admin->password == null)
@@ -59,39 +59,29 @@
                         <div class="form-group">
                             <label for="namauserAdmin">Nama User</label>
                             <input class="form-control" id="namauserAdmin" name="namauserAdmin" type="text"
-                                placeholder="Nama User" value="{{ old('admin', $admin->nama_user) }}" {{ $admin->nama_user ? "readonly=true" : "" }}>
+                                placeholder="Nama User" value="{{ old('admin', $admin->nama_user) }}">
                         </div>
 
                         <div class="form-group">
                             <label for="alamatAdmin">Alamat</label>
-                            <textarea class="form-control" name="alamatAdmin" {{ $admin->alamat ? "readonly=true" : "" }}>{{ $admin->alamat }}</textarea>
+                            <textarea class="form-control" name="alamatAdmin">{{ $admin->alamat }}</textarea>
                         </div>
 
                         <div class="form-group">
                             <label for="notelpuserAdmin">No Telp</label>
                             <input class="form-control" id="notelpuserAdmin" name="notelpuserAdmin" type="number"
-                                placeholder="Telp" value="{{ old('admin', $admin->no_telp_user) }}" {{ $admin->no_telp_user ? "readonly=true" : "" }}>
+                                placeholder="Telp" value="{{ old('admin', $admin->no_telp_user) }}">
                         </div>
 
                         <div class="form-group">
                             <label for="emailuserAdmin">Email</label>
                             <input class="form-control" id="emailuserAdmin" name="emailuserAdmin" type="email"
-                                placeholder="Email" value="{{ old('admin', $admin->email_user) }}" {{ $admin->email_user ? "readonly=true" : "" }}>
+                                placeholder="Email" value="{{ old('admin', $admin->email_user) }}">
                         </div>
 
                         <div class="form-group">
                             <label for="fotoAdmin">Foto</label>
                             <input class="form-control" id="fotoAdmin" name="fotoAdmin" type="file">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="statusAdmin">Status</label>
-                            <div class="form-group">
-                                <label class="switch">
-                                    <input type="checkbox" id="statusAdmin" name="statusAdmin" value="1" {{ $admin->status==1 ? "checked='checked'" : "" }}>
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
                         </div>
 
                         <a class="btn btn btn-info" href="{{ route('admin.index') }}">←</a>
