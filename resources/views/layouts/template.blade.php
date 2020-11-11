@@ -172,6 +172,13 @@
             <!--left side nav-->
             <ul class="navbar-nav left-side-nav" id="accordion">
 
+            <li class="nav-item {{ Request::routeIs('chart.*') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Data Produk">
+                    <a class="nav-link" href="{{ route('chart.index') }}">
+                        <i class="fa fa-dashboard"></i>
+                        <span class="nav-link-text">Dashboard</span>
+                    </a>
+                </li>
+
                 <li class="nav-item {{ Request::routeIs('barang.*') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Data Produk">
                     <a class="nav-link" href="{{ route('barang.index') }}">
                         <i class="fa fa-cubes"></i>
@@ -186,12 +193,12 @@
                     </a>
                 </li>
 
-                <li class="nav-item {{ Request::routeIs('pelanggan.*') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Data Pelanggan">
+                <!-- <li class="nav-item {{ Request::routeIs('pelanggan.*') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Data Pelanggan">
                     <a class="nav-link" href="{{ route('pelanggan.index') }}">
                         <i class="fa fa-users"></i>
                         <span class="nav-link-text">Data Pelanggan</span>
                     </a>
-                </li>
+                </li> -->
 
                 <li class="nav-item {{ Request::routeIs('admin.*') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Data Admin">
                     <a class="nav-link" href="{{ route('admin.index') }}">
@@ -207,12 +214,26 @@
                     </a>
                 </li>
 
-                <li class="nav-item {{ Request::routeIs('promo.*') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Data Promo">
+                <!-- <li class="nav-item {{ Request::routeIs('promo.*') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Data Promo">
                     <a class="nav-link" href="{{ route('promo.index') }}">
                         <i class="fa fa-ticket"></i>
                         <span class="nav-link-text">Data Promo</span>
                     </a>
+                </li> -->
+
+
+
+                <li class="nav-item {{ Request::routeIs('promo.*') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Icons">
+                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" data-target="#icons">
+                        <i class="fa fa-ticket"></i>
+                        <span class="nav-link-text">Promotion</span>
+                    </a>
+                    <ul class="sidenav-second-level collapse" id="icons" data-parent="#accordion">
+                        <li> <a href="{{ route('promo.index') }}">Data Pelanggan</a> </li>
+                        <li> <a href="{{ route('pelanggan.index') }}">Data Promo</a> </li>
+                    </ul>
                 </li>
+
 
                 <li class="nav-item {{ Request::routeIs('transaksi.*') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Data Transaksi">
                     <a class="nav-link" href="{{ route('transaksi.index') }}">

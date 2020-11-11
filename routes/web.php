@@ -51,4 +51,7 @@ Route::group(['prefix' => 'admin'], function () {
     //promo
     Route::resource('promo', 'PromoController');
 
+    //chart
+    Route::get('chart','ChartController@index')->name('chart.index');
+
 });
