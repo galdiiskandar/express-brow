@@ -18,7 +18,7 @@
                     <h4 class="creative-state-title">Dashboard</h4>
                 </div>
                 <div class="col-lg-5  col-12 text-lg-right">
-                    
+
                 </div>
                 <div class="col-xl-3 col-sm-6">
                     <div class="card card-shadow mb-4">
@@ -28,8 +28,8 @@
                                     <i class="vl_user-male"></i>
                                 </div>
                                 <div class="media-body">
-                                    <h4 class="text-uppercase mb-0 weight500 text-dark">4,87,654</h4>
-                                    <span class="text-muted">Barang</span>
+                                    <h4 class="text-uppercase mb-0 weight500 text-dark">{{$countPelanggan}}</h4>
+                                    <span class="text-muted">Pelanggan</span>
                                 </div>
                             </div>
                         </div>
@@ -43,7 +43,7 @@
                                     <i class="vl_download"></i>
                                 </div>
                                 <div class="media-body">
-                                    <h4 class="text-uppercase mb-0 weight500 text-dark">4,87,654</h4>
+                                <h4 class="text-uppercase mb-0 weight500 text-dark">{{$countProyek}}</h4>
                                     <span class="text-muted">Proyek</span>
                                 </div>
                             </div>
@@ -58,8 +58,8 @@
                                     <i class="vl_shopping-bag2"></i>
                                 </div>
                                 <div class="media-body">
-                                    <h4 class="text-uppercase mb-0 weight500 text-dark">4,87,654</h4>
-                                    <span class="text-muted">Active Installation</span>
+                                    <h4 class="text-uppercase mb-0 weight500 text-dark">{{$countBarang}}</h4>
+                                    <span class="text-muted">Barang</span>
                                 </div>
                             </div>
                         </div>
@@ -73,8 +73,8 @@
                                     <i class="vl_cart-empty"></i>
                                 </div>
                                 <div class="media-body">
-                                    <h4 class="text-uppercase mb-0 weight500 text-dark">4,87,654</h4>
-                                    <span class="text-muted">Product Sales</span>
+                                    <h4 class="text-uppercase mb-0 weight500 text-dark">{{$countTransaksi}}</h4>
+                                    <span class="text-muted">Transaksi</span>
                                 </div>
                             </div>
                         </div>
@@ -161,6 +161,9 @@
 
     <!-- init batang chart -->
     <script type="text/javascript">
+
+        var colors = ["red","green","blue"]
+
         $(function () {
                     "use strict";
 
@@ -172,27 +175,22 @@
 
                         // The data for our dataset
                         data: {
-                            labels: ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5"],
-                            datasets: [{
-                                label: "My First dataset",
-                                data: [40, 90, 210, 160, 230],
-                                backgroundColor: '#3dba6f',
-                                borderColor: '#3dba6f',
+                            labels: ["{{$bulan}}"],
+                            datasets: [
+                            @foreach($chartBarData as $t => $produk)
+                            {
+                                label: "{{$produk->nama_produk}}",
+                                data: [{{$produk->y}}],
+                                backgroundColor: colors[{{$t}}],
+                                borderColor: colors[{{$t}}],
                                 pointBorderColor: '#ffffff',
-                                pointBackgroundColor: '#3dba6f',
-                                pointBorderWidth: 2,
-                                pointRadius: 4
+                                pointBackgroundColor: colors[{{$t}}],
+                                pointBorderWidth: 1,
+                                pointRadius: 10
 
-                            }, {
-                                label: "My Second dataset",
-                                data: [160, 140, 20, 270, 110],
-                                backgroundColor: '#57b9d8',
-                                borderColor: '#57b9d8',
-                                pointBorderColor: '#ffffff',
-                                pointBackgroundColor: '#57b9d8',
-                                pointBorderWidth: 2,
-                                pointRadius: 4
-                            }]
+                            },
+                            @endforeach
+                        ]
                         },
 
                         // Configuration options go here
@@ -221,6 +219,9 @@
                                         borderDash: [5, 5, 5],
                                         zeroLineBorderDash: [5, 5, 5],
                                         drawBorder: false
+                                    },
+                                    ticks: {
+                                        beginAtZero: true
                                     }
                                 }]
 
@@ -259,27 +260,8 @@
 
             // The data for our dataset
             data: {
-                labels: ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5"],
-                datasets: [{
-                    label: "My First dataset",
-                    data: [40, 90, 210, 160, 230],
-                    backgroundColor: 'rgba(255,255,255,0)',
-                    borderColor: '#2ac021',
-                    pointBorderColor: '#ffffff',
-                    pointBackgroundColor: '#2ac021',
-                    pointBorderWidth: 2,
-                    pointRadius: 4
-
-                }, {
-                    label: "My Second dataset",
-                    data: [160, 140, 20, 270, 110],
-                    backgroundColor: 'rgba(255,255,255,0)',
-                    borderColor: '#57b9d8',
-                    pointBorderColor: '#ffffff',
-                    pointBackgroundColor: '#57b9d8',
-                    pointBorderWidth: 2,
-                    pointRadius: 4
-                }]
+                labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"],
+                datasets: {!!json_encode($chartLineData)!!}
             },
 
             // Configuration options go here
@@ -312,7 +294,7 @@
                         borderWidth: 1
                     },
                     point: {
-                        radius: 2,
+                        radius: 5,
                         hitRadius: 10,
                         hoverRadius: 6,
                         borderWidth: 4
