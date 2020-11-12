@@ -49,22 +49,27 @@
                                             <th>No.</th>
                                             <th>Nama</th>
                                             <th>Email</th>
+                                            <th>Aksi</th>
                                         </thead>
                                         <tbody>
                                                     @foreach ($subscribers as $scb => $subscriber)
                                                         <tr>
                                                             <td>
-                                                                <input type="checkbox" value="{{ $subscriber->id }}" class="idSub" name="idSubscribe[]">
+                                                                <input type="checkbox" value="{{ $subscriber->kode_pelanggan }}" class="idSub" name="idSubscribe[]">
                                                             </td>
                                                             <td>{{ ++$scb }}</td>
                                                             <td>{{ $subscriber->name }}</td>
                                                             <td>{{ $subscriber->email }}</td>
                                                             <input type="hidden" name="subemail[]" value="{{ $subscriber->email }}">
+                                                            <td>
+                                                                <a class="btn btn-sm btn-warning light-s" href="{{ route('subscriber-list.edit',$subscriber->kode_pelanggan) }}"><span class="fa fa-pencil"></span></a>
+                                                                <a class="btn btn-sm btn-danger light-s" href="{{ route('subscriber-list.delete',$subscriber->kode_pelanggan) }}"><span class="fa fa-trash"></span></a>
+                                                            </td>
                                                         </tr>
                                                     @endforeach
                                             </tbody>
                                     </table>
-                                        <input class="btn btn-primary" id="sendButton" type="submit">
+                                        <input class="btn btn-primary" id="sendButton" type="submit" value="Send">
                                 </div>
                         </form>
                     </div>

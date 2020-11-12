@@ -32,8 +32,8 @@ Route::group(['prefix' => 'admin'], function () {
     //Proyek
     Route::resource('proyek', 'ProyekController');
 
-    //Pelanggan
-    Route::resource('pelanggan', 'PelangganController');
+    // //Pelanggan
+    // Route::resource('pelanggan', 'PelangganController');
 
     //Front Site Configurator
     Route::resource('pengaturan-konten', 'FrontSiteConfigController');
@@ -43,10 +43,13 @@ Route::group(['prefix' => 'admin'], function () {
 
     //Transaksi
     Route::resource('transaksi', 'TransaksiController');
-  
+
     //Subscriber List
-    Route::get('subscriber-list','SubscriberListController@index')->name('subscriber-list.index');
-    Route::post('subscriber-list/send-email','SubscriberListController@SendEmail')->name('subscriber-list.send');
+    Route::get('pelanggan','SubscriberListController@index')->name('subscriber-list.index');
+    Route::post('pelanggan/send-email','SubscriberListController@SendEmail')->name('subscriber-list.send');
+    Route::get('/pelanggan/delete/{id}','SubscriberListController@delete')->name('subscriber-list.delete');
+    Route::get('/pelanggan/edit/{id}','SubscriberListController@edit')->name('subscriber-list.edit');
+    Route::put('/pelanggan/update/{id}','SubscriberListController@update')->name('subscriber-list.update');
 
     //promo
     Route::resource('promo', 'PromoController');

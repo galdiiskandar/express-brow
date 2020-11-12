@@ -193,12 +193,12 @@
                     </a>
                 </li>
 
-                <!-- <li class="nav-item {{ Request::routeIs('pelanggan.*') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Data Pelanggan">
+                {{-- <!-- <li class="nav-item {{ Request::routeIs('pelanggan.*') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Data Pelanggan">
                     <a class="nav-link" href="{{ route('pelanggan.index') }}">
                         <i class="fa fa-users"></i>
                         <span class="nav-link-text">Data Pelanggan</span>
                     </a>
-                </li> -->
+                </li> --> --}}
 
                 <li class="nav-item {{ Request::routeIs('admin.*') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Data Admin">
                     <a class="nav-link" href="{{ route('admin.index') }}">
@@ -207,12 +207,12 @@
                     </a>
                 </li>
 
-                <li class="nav-item {{ Request::routeIs('subscriber-list.*') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Data Subscriber">
+                {{-- <li class="nav-item {{ Request::routeIs('subscriber-list.*') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Data Subscriber">
                     <a class="nav-link" href="{{ route('subscriber-list.index') }}">
                         <i class="fa fa-users"></i>
                         <span class="nav-link-text">Data Subscriber</span>
                     </a>
-                </li>
+                </li> --}}
 
                 <!-- <li class="nav-item {{ Request::routeIs('promo.*') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Data Promo">
                     <a class="nav-link" href="{{ route('promo.index') }}">
@@ -229,8 +229,8 @@
                         <span class="nav-link-text">Promotion</span>
                     </a>
                     <ul class="sidenav-second-level collapse" id="icons" data-parent="#accordion">
-                        <li> <a href="{{ route('promo.index') }}">Data Pelanggan</a> </li>
-                        <li> <a href="{{ route('pelanggan.index') }}">Data Promo</a> </li>
+                        <li> <a href="{{ route('subscriber-list.index') }}">Data Pelanggan</a> </li>
+                        <li> <a href="{{ route('promo.index') }}">Data Promo</a> </li>
                     </ul>
                 </li>
 
