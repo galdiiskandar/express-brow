@@ -17,6 +17,47 @@ class WebsiteController extends Controller
         ]);
     }
 
+    public function productPage(){
+        $getContent = FrontSiteConfig::first();
+
+        $barang = DB::table('barangs')
+                        ->limit(10)->get();
+
+        return view('website.produk',[
+            'content' => $getContent,
+            'barangs' => $barang
+        ]);
+    }
+
+    public function detailProduct($id){
+        $getContent = FrontSiteConfig::first();
+
+        $getDetailBarang = DB::table('barangs')
+                                ->where('kode_produk',$id)
+                                ->first();
+
+        return view('website.detail_produk',[
+            'detailBarang' => $getDetailBarang,
+            'content' => $getContent
+        ]);
+    }
+
+    public function promoPage(){
+        $getContent = FrontSiteConfig::first();
+
+        return view('website.promo',[
+            'content' => $getContent
+        ]);
+    }
+
+    public function contactPage(){
+        $getContent = FrontSiteConfig::first();
+
+        return view('website.contact',[
+            'content' => $getContent
+        ]);
+    }
+
     public function store(Request $request)
     {
         //check if data is exist

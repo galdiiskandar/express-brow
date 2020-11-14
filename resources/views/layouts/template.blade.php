@@ -193,12 +193,6 @@
                     </a>
                 </li>
 
-                {{-- <!-- <li class="nav-item {{ Request::routeIs('pelanggan.*') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Data Pelanggan">
-                    <a class="nav-link" href="{{ route('pelanggan.index') }}">
-                        <i class="fa fa-users"></i>
-                        <span class="nav-link-text">Data Pelanggan</span>
-                    </a>
-                </li> --> --}}
 
                 <li class="nav-item {{ Request::routeIs('admin.*') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Data Admin">
                     <a class="nav-link" href="{{ route('admin.index') }}">
@@ -206,22 +200,6 @@
                         <span class="nav-link-text">Data Admin</span>
                     </a>
                 </li>
-
-                {{-- <li class="nav-item {{ Request::routeIs('subscriber-list.*') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Data Subscriber">
-                    <a class="nav-link" href="{{ route('subscriber-list.index') }}">
-                        <i class="fa fa-users"></i>
-                        <span class="nav-link-text">Data Subscriber</span>
-                    </a>
-                </li> --}}
-
-                <!-- <li class="nav-item {{ Request::routeIs('promo.*') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Data Promo">
-                    <a class="nav-link" href="{{ route('promo.index') }}">
-                        <i class="fa fa-ticket"></i>
-                        <span class="nav-link-text">Data Promo</span>
-                    </a>
-                </li> -->
-
-
 
                 <li class="nav-item {{ Request::routeIs('promo.*') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Icons">
                     <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" data-target="#icons">
@@ -246,6 +224,13 @@
                     <a class="nav-link" href="{{ route('pengaturan-konten.index') }}">
                         <i class="fa fa-globe"></i>
                         <span class="nav-link-text">Pengaturan Konten</span>
+                    </a>
+                </li>
+
+                <li class="nav-item {{ Request::routeIs('laporan-transaksi') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Pengaturan Konten">
+                    <a class="nav-link" href="{{ route('laporan-transaksi') }}">
+                        <i class="fa fa-book"></i>
+                        <span class="nav-link-text">Laporan</span>
                     </a>
                 </li>
 
@@ -284,16 +269,6 @@
     <div class="content-wrapper">
 
         @yield('contentHere')
-
-        {{-- <!--creative states-->
-        <div class="creative-state-area">
-            @yield('statisticHere')
-        </div>
-        <!--/creative states-->
-
-        <div class="container-fluid">
-            @yield('contentHere')
-        </div> --}}
 
         <!--footer-->
         <footer class="sticky-footer">

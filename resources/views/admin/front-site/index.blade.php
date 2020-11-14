@@ -40,23 +40,58 @@
 
                                     @csrf
                                     <div class="row">
-                                        <div class="col-md-12">
+                                        <div class="col-md-4">
                                             <label for="bannerHome1">Current Banner Home 1 : </label>
 
-                                            @if ($request->bannerHome)
+                                            @if ($request->bannerHome1)
                                                 <br>
-                                                <img class="preview-image" src="{{ url('/images/'.$request->bannerHome)}}">
+                                                <img class="preview-image" src="{{ url('/images/'.$request->bannerHome1)}}">
                                                 <br>
                                                 <br>
                                             @else
-                                                <strong>Banner Home Tidak Tersedia</strong>
+                                                <strong>Banner Home 1 Tidak Tersedia</strong>
                                             @endif
 
                                             <div class="form-group">
                                                 <label for="bannerHome">Banner Home 1</label>
-                                                <input class="form-control input-file" id="bannerHome" name="bannerHome" type="file">
+                                                <input class="form-control input-file" id="bannerHome1" name="bannerHome1" type="file">
                                             </div>
+                                        </div>
 
+                                        <div class="col-md-4">
+                                            <label for="bannerHome1">Current Banner Home 2 : </label>
+
+                                            @if ($request->bannerHome2)
+                                                <br>
+                                                <img class="preview-image" src="{{ url('/images/'.$request->bannerHome2)}}">
+                                                <br>
+                                                <br>
+                                            @else
+                                                <strong>Banner Home 2 Tidak Tersedia</strong>
+                                            @endif
+
+                                            <div class="form-group">
+                                                <label for="bannerHome">Banner Home 2</label>
+                                                <input class="form-control input-file" id="bannerHome2" name="bannerHome2" type="file">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label for="bannerHome1">Current Banner Home 3 : </label>
+
+                                            @if ($request->bannerHome3)
+                                                <br>
+                                                <img class="preview-image" src="{{ url('/images/'.$request->bannerHome3)}}">
+                                                <br>
+                                                <br>
+                                            @else
+                                                <strong>Banner Home 3 Tidak Tersedia</strong>
+                                            @endif
+
+                                            <div class="form-group">
+                                                <label for="bannerHome">Banner Home 3</label>
+                                                <input class="form-control input-file" id="bannerHome3" name="bannerHome3" type="file">
+                                            </div>
                                         </div>
 
                                         <div class="col-md-4">
@@ -116,7 +151,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="contactDetail">Contact</label>
-                                                <textarea class="form-control" id="contactDetail" name="contactDetail" type="text" placeholder="Contact"></textarea>
+                                                <textarea class="form-control" id="contact" name="contact" type="text" placeholder="Contact">{{ old('contact', $request->contact) }}</textarea>
                                             </div>
                                         </div>
 

@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class FrontSiteConfig extends Model
 {
     protected $fillable = [
-        'bannerHome',
+        'bannerHome1',
+        'bannerHome2',
+        'bannerHome3',
         'bannerPromo1',
         'bannerPromo2',
         'bannerPromo3',
@@ -17,7 +19,9 @@ class FrontSiteConfig extends Model
     public function getDefaultValues()
     {
         return [
-            'bannerHome'   => '',
+            'bannerHome1'   => '',
+            'bannerHome2'   => '',
+            'bannerHome3'   => '',
             'bannerPromo1'  => '',
             'bannerPromo2'  => '',
             'bannerPromo3'  => '',

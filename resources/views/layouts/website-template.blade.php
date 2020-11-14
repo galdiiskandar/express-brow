@@ -25,17 +25,17 @@
 
         <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
             <ul class="navbar-nav m-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <li class="nav-item {{ Request::routeIs('fontPage') ? 'active' : '' }}">
+                    <a class="nav-link" href="/">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Categories</a>
+                <li class="nav-item {{ Request::routeIs('produk') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('produk') }}">Product</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Product</a>
+                <li class="nav-item {{ Request::routeIs('promoPage') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('promoPage') }}">Promo</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
+                <li class="nav-item {{ Request::routeIs('contactPage') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('contactPage') }}">Contact</a>
                 </li>
             </ul>
 

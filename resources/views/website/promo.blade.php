@@ -35,56 +35,6 @@
 {{-- First Container Content --}}
 @section('firstContainer')
 <div class="row">
-    <div class="col-12 col-md-3">
-        <div class="card">
-            <div class="card-header bg-success text-white text-uppercase">
-                <i class="fa fa-envelope"></i> Subscribe List
-            </div>
-            {{-- <img class="img-fluid border-0" src="https://dummyimage.com/600x400/55595c/fff" alt="Card image cap"> --}}
-            <div class="card-body">
-                {{-- <h4 class="card-title text-center"><a href="product.html" title="View Product">Product title</a></h4> --}}
-                @if (Session::has('success'))
-                    <div class="alert alert-success successAlert">
-                        <p>{{ Session::get('success') }}</p>
-                    </div>
-                @endif
-                @if ($errors->any())
-                    <div class="alert alert-danger errorAlert">
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </div>
-                @endif
-                <div class="row">
-                    {{-- <div class="col">
-                        <p class="btn btn-danger btn-block">99.00 $</p>
-                    </div>
-                    <div class="col">
-                        <a href="product.html" class="btn btn-success btn-block">View</a>
-                    </div> --}}
-                    <div class="col">
-                        <form method="POST" action="{{ route('subscribelist.store') }}">
-                            @csrf
-                            <div class="form-group">
-                                <label>Nama</label>
-
-                                <input class="form-control" name="subscriberName" type="text">
-                            </div>
-                            <div class="form-group">
-                                <label>Email</label>
-
-                                <input class="form-control" name="subscriberEmail" type="email">
-                            </div>
-
-                            <div class="form-group">
-                                <input class="btn btn-success btn-block" type="submit" name="submit" value="Subscribe">
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="col">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
@@ -105,13 +55,13 @@
                     </div>
                 @else
                     <div class="carousel-item active">
-                        <img class="d-block w-100" src="{{ url('/images/'.$content->bannerHome1) }}" alt="First slide">
+                        <img class="d-block w-100" src="{{ url('/images/'.$content->bannerPromo1) }}" alt="First slide">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="{{ url('/images/'.$content->bannerHome2) }}" alt="Second slide">
+                        <img class="d-block w-100" src="{{ url('/images/'.$content->bannerPromo2) }}" alt="Second slide">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="{{ url('/images/'.$content->bannerHome3) }}" alt="Third slide">
+                        <img class="d-block w-100" src="{{ url('/images/'.$content->bannerPromo3) }}" alt="Third slide">
                     </div>
                 @endif
 

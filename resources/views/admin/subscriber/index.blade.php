@@ -21,7 +21,7 @@
                     <div class="card card-shadow mb-4">
                         <div class="card-header border-0">
                             <div class="custom-title-wrap bar-primary">
-                                <div class="custom-title">Data Subscriber</div>
+                                <div class="custom-title">Data Pelanggan</div>
                                 @if (Session::has('success'))
                                     <div class="alert alert-success successAlert">
                                         <p>{{ Session::get('success') }}</p>
@@ -41,7 +41,7 @@
                                         </select>
                                     </div>
 
-                                    <input type="button" class="btn btn-primary check" id="selectAll" value="Pilih Semua Subscriber">
+                                    <input type="button" class="btn btn-primary check" id="selectAll" value="Pilih Semua Pelanggan">
 
                                     <table class="table table-stripped" id="tableSubscribexr">
                                         <thead>

@@ -8,7 +8,8 @@ use App\DetailTransaksi;
 use Illuminate\Http\Request;
 
 use Auth;
-use DB;
+use Illuminate\Support\Facades\DB;
+use PDF;
 
 class TransaksiController extends Controller
 {
@@ -17,6 +18,12 @@ class TransaksiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
 
@@ -160,5 +167,50 @@ class TransaksiController extends Controller
     public function destroy(Transaksi $transaksi)
     {
         //
+    }
+
+    public function reportTransaction(){
+        $getData = DB::table('transaksis')
+                        ->join('detail_transaksis','transaksis.kode_transaksi','=','detail_transaksis.kode_transaksi')
+                        ->orderByDesc('transaksis.created_at')
+                        ->paginate(10);
+
+        return view('admin/laporan.index',[
+            'getData' => $getData
+        ]);
+    }
+
+    public function getReportTransaction(Request $request){
+
+        switch($request->input('action')){
+            case 'cariData':
+                $dariTanggal = $request->dariTanggal;
+                $sampaiTanggal = $request->sampaiTanggal;
+
+                $getData = DB::table('transaksis')
+                                ->join('detail_transaksis','transaksis.kode_transaksi','=','detail_transaksis.kode_transaksi')
+                                ->whereBetween('transaksis.tanggal',[$dariTanggal, $sampaiTanggal])
+                                ->paginate(10);
+
+                return view('admin/laporan.index',[
+                    'getData' => $getData
+                ]);
+            break;
+
+            case 'printData':
+                $dariTanggal = $request->dariTanggal;
+                $sampaiTanggal = $request->sampaiTanggal;
+
+                $getData = DB::table('transaksis')
+                                ->join('detail_transaksis','transaksis.kode_transaksi','=','detail_transaksis.kode_transaksi')
+                                ->whereBetween('transaksis.tanggal',[$dariTanggal, $sampaiTanggal])
+                                ->get();
+
+                $pdf = PDF::loadview('admin/laporan.cetak',[
+                    'getData'=>$getData
+                ]);
+                return $pdf->stream();
+            break;
+        }
     }
 }

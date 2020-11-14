@@ -15,7 +15,9 @@ class CreateFrontSiteConfigsTable extends Migration
     {
         Schema::create('front_site_configs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('bannerHome')->nullable();
+            $table->string('bannerHome1')->nullable();
+            $table->string('bannerHome2')->nullable();
+            $table->string('bannerHome3')->nullable();
             $table->string('bannerPromo1')->nullable();
             $table->string('bannerPromo2')->nullable();
             $table->string('bannerPromo3')->nullable();

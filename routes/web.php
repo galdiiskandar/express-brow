@@ -20,7 +20,13 @@ Auth::routes();
 // Route::get('/home', 'HomeController@index')->name('home');
 
 //Homepage
-Route::get('/','WebsiteController@index');
+Route::get('/','WebsiteController@index')->name('fontPage');
+
+Route::get('/produk','WebsiteController@productPage')->name('produk');
+Route::get('/detail_produk/{id}','WebsiteController@detailProduct')->name('detail-produk');
+Route::get('/promo','WebsiteController@promoPage')->name('promoPage');
+Route::get('/contact','WebsiteController@contactPage')->name('contactPage');
+
 
 //Subsriber List
 Route::post('/subscribeList','WebsiteController@store')->name('subscribelist.store');
@@ -56,5 +62,8 @@ Route::group(['prefix' => 'admin'], function () {
 
     //chart
     Route::get('chart','ChartController@index')->name('chart.index');
+
+    Route::get('/laporan-transaksi','TransaksiController@reportTransaction')->name('laporan-transaksi');
+    Route::post('/get-laporan-transaksi','TransaksiController@getReportTransaction')->name('laporan-transaksi.get');
 
 });
