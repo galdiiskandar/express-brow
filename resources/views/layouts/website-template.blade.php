@@ -31,6 +31,9 @@
                 <li class="nav-item {{ Request::routeIs('produk') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('produk') }}">Product</a>
                 </li>
+                <li class="nav-item {{ Request::routeIs('proyekPage') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('proyekPage') }}">Proyek</a>
+                </li>
                 <li class="nav-item {{ Request::routeIs('promoPage') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('promoPage') }}">Promo</a>
                 </li>

@@ -42,6 +42,31 @@ class WebsiteController extends Controller
         ]);
     }
 
+    public function proyekPage(){
+        $getContent = FrontSiteConfig::first();
+
+        $proyek = DB::table('proyeks')
+                        ->limit(10)->get();
+
+        return view('website.proyek',[
+            'content' => $getContent,
+            'proyeks' => $proyek
+        ]);
+    }
+
+    public function detailProyek($id){
+        $getContent = FrontSiteConfig::first();
+
+        $getDetailProyek = DB::table('proyeks')
+                                ->where('kode_proyek',$id)
+                                ->first();
+
+        return view('website.detail_proyek',[
+            'detailProyek' => $getDetailProyek,
+            'content' => $getContent
+        ]);
+    }
+
     public function promoPage(){
         $getContent = FrontSiteConfig::first();
 
@@ -60,6 +85,12 @@ class WebsiteController extends Controller
 
     public function store(Request $request)
     {
+
+        $validate = $request->validate([
+            'subscriberName' => 'required',
+            'subscriberEmail' => 'required'
+        ]);
+
         //check if data is exist
         $checkPelanggan = DB::table('pelanggans')->get();
 
@@ -70,6 +101,19 @@ class WebsiteController extends Controller
         if($checkPelanggan->isEmpty()){
             $newGeneratedID = $prefixID.'-'.'001';
 
+            $insertData = DB::table('pelanggans')->insert([
+                'kode_pelanggan' => $newGeneratedID,
+                'name' => $request->subscriberName,
+                'email'=> $request->subscriberEmail,
+                'created_at' => \Carbon\Carbon::now(),
+                'updated_at' => \Carbon\Carbon::now()
+            ]);
+
+            if($insertData){
+                return redirect('/')->with('success','Data Berhasil Disimpan');
+            }else{
+                return redirect('/')->with('error','Data Gagal Disimpan');
+            }
         }else{
             //count fist
             $checkPelanggan = DB::table('pelanggans')
@@ -88,11 +132,6 @@ class WebsiteController extends Controller
         $noUrut++;
 
         $newGeneratedID = $prefixID.'-'.sprintf('%03s',$noUrut);
-
-        $validate = $request->validate([
-            'subscriberName' => 'required',
-            'subscriberEmail' => 'required'
-        ]);
 
         $insertData = DB::table('pelanggans')->insert([
                         'kode_pelanggan' => $newGeneratedID,

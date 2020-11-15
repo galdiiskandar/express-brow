@@ -212,27 +212,38 @@
                     </ul>
                 </li>
 
+                <li class="nav-item {{ Request::routeIs('transaksi.*') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Icons">
+                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" data-target="#transaksi">
+                        <i class="fa fa-money"></i>
+                        <span class="nav-link-text">Transaksi</span>
+                    </a>
+                    <ul class="sidenav-second-level collapse" id="transaksi" data-parent="#accordion">
+                        <li> <a href="{{ route('transaksi.index') }}">Data Transaksi</a> </li>
+                        <li> <a href="{{ route('transaksi.laporan-transaksi') }}">Laporan</a> </li>
+                    </ul>
+                </li>
 
-                <li class="nav-item {{ Request::routeIs('transaksi.*') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Data Transaksi">
+
+                {{-- <li class="nav-item {{ Request::routeIs('transaksi.*') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Data Transaksi">
                     <a class="nav-link" href="{{ route('transaksi.index') }}">
                         <i class="fa fa-money"></i>
                         <span class="nav-link-text">Data Transaksi</span>
                     </a>
-                </li>
+                </li> --}}
 
-                <li class="nav-item {{ Request::routeIs('pengaturan-konten.*') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Pengaturan Konten">
+                {{-- <li class="nav-item {{ Request::routeIs('pengaturan-konten.*') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Pengaturan Konten">
                     <a class="nav-link" href="{{ route('pengaturan-konten.index') }}">
                         <i class="fa fa-globe"></i>
                         <span class="nav-link-text">Pengaturan Konten</span>
                     </a>
-                </li>
+                </li> --}}
 
-                <li class="nav-item {{ Request::routeIs('laporan-transaksi') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Pengaturan Konten">
-                    <a class="nav-link" href="{{ route('laporan-transaksi') }}">
+                {{-- <li class="nav-item {{ Request::routeIs('laporan-transaksi') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Pengaturan Konten">
+                    <a class="nav-link" href="{{ route('transaksi.laporan-transaksi') }}">
                         <i class="fa fa-book"></i>
                         <span class="nav-link-text">Laporan</span>
                     </a>
-                </li>
+                </li> --}}
 
             </ul>
             <!--/header leftside links-->

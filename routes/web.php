@@ -24,6 +24,8 @@ Route::get('/','WebsiteController@index')->name('fontPage');
 
 Route::get('/produk','WebsiteController@productPage')->name('produk');
 Route::get('/detail_produk/{id}','WebsiteController@detailProduct')->name('detail-produk');
+Route::get('/proyek','WebsiteController@proyekPage')->name('proyekPage');
+Route::get('/detail-proyek/{id}','WebsiteController@detailProyek')->name('detail-proyek');
 Route::get('/promo','WebsiteController@promoPage')->name('promoPage');
 Route::get('/contact','WebsiteController@contactPage')->name('contactPage');
 
@@ -63,7 +65,7 @@ Route::group(['prefix' => 'admin'], function () {
     //chart
     Route::get('chart','ChartController@index')->name('chart.index');
 
-    Route::get('/laporan-transaksi','TransaksiController@reportTransaction')->name('laporan-transaksi');
+    Route::get('/laporan-transaksi','TransaksiController@reportTransaction')->name('transaksi.laporan-transaksi');
     Route::post('/get-laporan-transaksi','TransaksiController@getReportTransaction')->name('laporan-transaksi.get');
 
 });
