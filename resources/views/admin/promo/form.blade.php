@@ -60,12 +60,6 @@
                             <textarea class="form-control" name="deskripsiPromo">{{ $promo->deskripsi }}</textarea>
                         </div>
 
-                        <div class="form-group">
-                            <label for="statusPromo">Status Promo</label>
-                            <input class="form-control" id="statusPromo" name="statusPromo"
-                                placeholder="Status Promo" value="{{ old('promo', $promo->status) }}">
-                        </div>
-
                         <a class="btn btn btn-info" href="{{ route('promo.index') }}">←</a>
                         <button class="btn btn-secondary" type="reset">Ulang</button>
                         <button class="btn btn-success btn-submit" type="submit">Simpan</button>

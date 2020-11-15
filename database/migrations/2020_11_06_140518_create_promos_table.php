@@ -18,7 +18,6 @@ class CreatePromosTable extends Migration
             $table->string('nama');
             $table->text('deskripsi');
             $table->string('foto_promo');
-            $table->char('status',1);
             $table->timestamps();
         });
     }

@@ -56,8 +56,7 @@ class PromoController extends Controller
         $validate = $request->validate([
             'gambarPromo'=> 'mimes:jpg,jpeg,png|max:4096',
             'kodePromo' => 'required',
-            'namaPromo' => 'required',
-            'statusPromo' => 'required'
+            'namaPromo' => 'required'
         ]);
 
 
@@ -69,8 +68,7 @@ class PromoController extends Controller
             'kode_promo' => $request->kodePromo,
             'nama' => $request->namaPromo,
             'deskripsi' => $request->deskripsiPromo,
-            'foto_promo' => $gambarName,
-            'status'=> $request->statusPromo
+            'foto_promo' => $gambarName
         ];
 
         $insertData = $promo::create($data);
@@ -132,8 +130,7 @@ class PromoController extends Controller
             $dataWoPhoto = [
                 'kode_promo' => $request->kodePromo,
                 'nama' => $request->namaPromo,
-                'deskripsi' => $request->deskripsiPromo,
-                'status'=> $request->statusPromo
+                'deskripsi' => $request->deskripsiPromo
             ];
 
             $updatePromo = $promo::where('kode_promo', $request->kodePromo)
@@ -155,8 +152,7 @@ class PromoController extends Controller
                 'kode_promo' => $request->kodePromo,
                 'nama' => $request->namaPromo,
                 'deskripsi' => $request->deskripsiPromo,
-                'foto_promo' => $gambarName,
-                'status'=> $request->statusPromo
+                'foto_promo' => $gambarName
             ];
 
             $updatePromo = $promo::where('kode_promo', $request->kodePromo)

@@ -14,8 +14,7 @@ class Promo extends Model
         'kode_promo',
         'nama',
         'deskripsi',
-        'foto_promo',
-        'status'
+        'foto_promo'
     ];
 
     protected $guarded = [
@@ -29,8 +28,7 @@ class Promo extends Model
             'kode_promo' => '',
             'nama' => '',
             'deskripsi' => '',
-            'foto_promo' => '',
-            'status' => ''
+            'foto_promo' => ''
         ];
     }
 }
