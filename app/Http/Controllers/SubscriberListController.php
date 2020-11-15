@@ -22,7 +22,6 @@ class SubscriberListController extends Controller
                             ->get();
 
         $selectPromo = DB::table('promos')
-                            ->where('status','1')
                             ->get();
 
         return view('admin/subscriber.index',[
