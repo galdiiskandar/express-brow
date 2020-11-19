@@ -223,6 +223,13 @@
                     </ul>
                 </li>
 
+                <li class="nav-item {{ Request::routeIs('pengaturan-konten.*') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Pengaturan Konten">
+                    <a class="nav-link" href="{{ route('pengaturan-konten.index') }}">
+                        <i class="fa fa-globe"></i>
+                        <span class="nav-link-text">Pengaturan Konten</span>
+                    </a>
+                </li>
+
 
                 {{-- <li class="nav-item {{ Request::routeIs('transaksi.*') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Data Transaksi">
                     <a class="nav-link" href="{{ route('transaksi.index') }}">

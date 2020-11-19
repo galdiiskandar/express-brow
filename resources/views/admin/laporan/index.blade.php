@@ -42,8 +42,8 @@
                                         <input type="date" name="sampaiTanggal" class="form-control">
                                     </div>
                                     <div class="form-group ml-5">
-                                        <button type="submit" name="action" class="btn btn-success" value="cariData"><i class="fa fa-search"></i> Cari Data</button>
-                                        <button type="submit" name="action" class="btn btn-info ml-3" value="printData"><i class="fa fa-print"></i> Cetak Data</button>
+                                        <button type="submit" name="action" class="btn btn-info" value="printData"><i class="fa fa-print"></i> Cetak Data</button>
+                                        <button type="submit" name="action" class="btn btn-success ml-3" value="cariData"><i class="fa fa-search"></i> Cari Data</button>
                                     </div>
                                 </form>
 

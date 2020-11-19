@@ -43,6 +43,16 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="namaPelanggan">Pelanggan</label>
+                                <select id="dataPelanggan" name="pelanggan" class="form-control">
+                                    <option></option>
+                                    @foreach ($pelanggans as $pelanggan)
+                                        <option value="{{ $pelanggan->kode_pelanggan }}">{{ $pelanggan->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group">
                                 <label for="tanggalTransaksi">Tanggal Transaksi</label>
                                 <input type="date" class="form-control" id="tanggalTransaksi" name="tanggalTransaksi" value="{{ old('transaksi', $transaksi->tanggal) }}">
                             </div>

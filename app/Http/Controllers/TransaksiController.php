@@ -53,10 +53,13 @@ class TransaksiController extends Controller
 
         $selectProduk = Barang::all();
 
+        $selectPelanggan = DB::table('pelanggans')->get();
+
         return view('admin/transaksi.form',[
             'transaksi' => $transaksi,
             'produk' => $selectProduk,
-            'produk1' => $selectProduk
+            'produk1' => $selectProduk,
+            'pelanggans' => $selectPelanggan
         ]);
     }
 
@@ -79,12 +82,14 @@ class TransaksiController extends Controller
             'kodeTransaksi'=> 'required',
             'tanggalTransaksi' => 'required',
             'totalTransaksi' => 'required',
-            'keteranganTransaksi' => 'required'
+            'keteranganTransaksi' => 'required',
+            'pelanggan' => 'required'
         ]);
 
         $data = [
             'kode_transaksi' => $request->kodeTransaksi,
             'kode_user' => Auth::user()->kode_user,
+            'kode_pelanggan' => $request->pelanggan,
             'tanggal' => $request->tanggalTransaksi,
             'total' => $request->totalTransaksi,
             'keterangan_transaksi' => $request->keteranganTransaksi
@@ -120,8 +125,9 @@ class TransaksiController extends Controller
     {
         $dataTransaksi = DB::table('transaksis')
                                 ->join('users', 'transaksis.kode_user', '=', 'users.kode_user')
-                                ->select('transaksis.*','users.nama_user as nama_user')
-                                ->where('kode_transaksi',$id)
+                                ->join('pelanggans','transaksis.kode_pelanggan','=','pelanggans.kode_pelanggan')
+                                ->select('transaksis.*','users.nama_user as nama_user','pelanggans.name as naPelanggan')
+                                ->where('transaksis.kode_transaksi',$id)
                                 ->get();
 
         $datadetailTransaksi = DB::table('detail_transaksis')
